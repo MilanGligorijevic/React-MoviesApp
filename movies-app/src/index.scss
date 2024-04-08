@@ -1,3 +1,25 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+$color_yellow: #ffce32;
+$color_blue: #1d63ff;
+$color_white: #ffffff;
+$color_black: #333333;
+
+$xs_text: 12px;
+$small_text: 16px;
+$medium_text: 22px;
+$large_text: 30px;
+
 body {
-  background-color: red;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
 }

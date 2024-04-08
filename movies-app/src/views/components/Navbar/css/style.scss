@@ -1,0 +1,22 @@
+@import "../../../../index.scss";
+
+.main_navbar {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  font-size: $medium_text;
+  background-color: $color_yellow;
+
+  .navbar_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color_black;
+
+    &-name {
+      font-size: $small_text;
+      font-weight: 1000;
+      color: $color_black;
+    }
+  }
+}

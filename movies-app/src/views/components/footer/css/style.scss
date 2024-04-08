@@ -1,0 +1,13 @@
+@import "../../../../index.scss";
+
+.footer_main {
+  background-color: $color_black;
+  color: $color_white;
+  font-size: $small_text;
+
+  .footer_bottom {
+    background-color: $color_yellow;
+    color: $color_blue;
+    font-size: $small_text;
+  }
+}

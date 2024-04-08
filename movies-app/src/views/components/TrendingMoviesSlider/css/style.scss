@@ -1,0 +1,18 @@
+@import "../../../../index.scss";
+
+.trending_movie-info {
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
+  .trending_movie-title {
+    font-size: $medium_text;
+    color: $color_white;
+    font-weight: 600;
+  }
+
+  .trending_movie-release {
+    font-size: $small_text;
+    color: $color_white;
+    font-weight: 600;
+  }
+}

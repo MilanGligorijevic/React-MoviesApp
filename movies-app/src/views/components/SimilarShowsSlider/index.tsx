@@ -80,7 +80,7 @@ function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
                     return <SwiperSlide key={show.id}>
                         <Link to={`/show/${show.id}`} className='similar_show_slide rounded relative'>
                             <img className="rounded" src={show.backgroundPath} alt='similar show' />
-                            <div className='similar_show-title w-36 absolute bottom-2 left-2'>{show.title}</div>
+                            <div className='similar_show-title w-36 absolute bottom-3 left-3'>{show.title}</div>
                         </Link>
                     </SwiperSlide>
                 })}

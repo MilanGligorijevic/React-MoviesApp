@@ -1,7 +1,12 @@
 @import "../../../../index.scss";
 
+.similar_movies_slider-text {
+  font-size: $large_text;
+  font-weight: 500;
+}
+
 .similar_movie-title {
-  font-size: $small_text;
+  font-size: $medium_text;
   color: $color_white;
   font-weight: 600;
 }

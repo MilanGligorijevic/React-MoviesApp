@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './css/style.scss'
 import { PopcornLogo } from '../../../assets/svg/PopcornLogo'
 import { SearchIcon } from '../../../assets/svg/SearchIcon'
@@ -16,7 +16,7 @@ function HeroSection() {
                 <button className='hero_section_button rounded-3xl p-2.5'>SIGN UP FOR FREE</button>
             </div>
             <div className='ml-10 absolute right-52 top-20'>
-            <PopcornLogo width={500} height={500} color="#ffffff"/>
+                <PopcornLogo width={500} height={500} color="#ffffff" />
             </div>
         </div>
     )

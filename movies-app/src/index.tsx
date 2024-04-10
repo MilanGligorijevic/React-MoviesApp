@@ -18,6 +18,7 @@ import SingleShow from './views/pages/SingleShow';
 import GenresMovies from './views/pages/GenresMovies';
 import GenresShows from './views/pages/GenresShows';
 import SearchResults from './views/pages/SearchResults';
+import { UsersContextProvider } from './context/usersContext';
 
 const router = createBrowserRouter([
   {
@@ -71,11 +72,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <MoviesContextProvider>
-      <ShowsContextProvider>
-        <RouterProvider router={router} />
-      </ShowsContextProvider>
-    </MoviesContextProvider>
+    <UsersContextProvider>
+      <MoviesContextProvider>
+        <ShowsContextProvider>
+          <RouterProvider router={router} />
+        </ShowsContextProvider>
+      </MoviesContextProvider>
+    </UsersContextProvider>
   </React.StrictMode>
 );
 

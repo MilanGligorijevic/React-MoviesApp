@@ -5,13 +5,22 @@ import { auth } from '../../../firebase/config';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import User from '../../../types/user';
 import Footer from '../../components/footer';
+import { useCurrentUser } from '../../../context/usersContext';
 
 function SignIn() {
     const [userCredentials, setUserCredentials] = useState<User>({ id: 0, email: "", password: "" });
+    const currentUser = useCurrentUser();
+
 
     function handleCredentials(e: React.ChangeEvent<HTMLInputElement>) {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value })
         console.log(userCredentials)
+    }
+
+    function signInUser(id: string, email: string | null) {
+        const user = { userId: id, userEmail: email };
+        currentUser.userDispatch({ type: 'SET_USER', payload: user });
+        console.log(currentUser.user);
     }
 
     function handleSignup(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -19,10 +28,8 @@ function SignIn() {
         console.log("sign up")
         createUserWithEmailAndPassword(auth, userCredentials.email, userCredentials.password)
             .then((userCredential) => {
-                // Signed up 
-                const user = userCredential.user;
-                console.log(user)
-                // ...
+                const { uid, email } = userCredential.user;
+                signInUser(uid, email);
             })
             .catch((error) => {
                 const errorCode = error.code;

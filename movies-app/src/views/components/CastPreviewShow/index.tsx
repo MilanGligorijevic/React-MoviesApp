@@ -5,21 +5,21 @@ import Actor from "../../../types/actor";
 import axios from "axios";
 import ActorPreview from "../ActorPreview";
 
-function CastPreviewShow(){
-    const {showId} = useParams();
+function CastPreviewShow() {
+    const { showId } = useParams();
     const [showCast, setShowCast] = useState<Actor[]>();
 
     useEffect(() => {
         const options = {
             method: 'GET',
             url: `https://api.themoviedb.org/3/tv/${showId}/credits`,
-            params: {language: 'en-US'},
+            params: { language: 'en-US' },
             headers: {
-              accept: 'application/json',
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZTA2YWFmOWNkMjE1ZWMwMjZjYTY5OTBlMjE2NDQ4ZiIsInN1YiI6IjY2MDQ0NGQyMDQ3MzNmMDE0YWU4NWYxNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BWiPQiJfB-kVLufmhb-dwWewyLYfisJfxBAzmxV89GA'
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZTA2YWFmOWNkMjE1ZWMwMjZjYTY5OTBlMjE2NDQ4ZiIsInN1YiI6IjY2MDQ0NGQyMDQ3MzNmMDE0YWU4NWYxNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BWiPQiJfB-kVLufmhb-dwWewyLYfisJfxBAzmxV89GA'
             }
-          };
-        
+        };
+
 
         async function fetchData() {
             const { data } = await axios.request(
@@ -43,12 +43,12 @@ function CastPreviewShow(){
     }, [showId])
 
     return (
-        <div>
-            <h1>Top cast</h1>
-            <div className="flex gap-3">
-            {showCast?.map((actor) => {
-                return <ActorPreview {...actor}/>
-            })}
+        <div className="cast_preview_show_main w-5/6 ml-40">
+            <h1 className="cast_preview_show_title mt-8 mb-3">Top cast</h1>
+            <div className="flex gap-4">
+                {showCast?.map((actor) => {
+                    return <ActorPreview {...actor} />
+                })}
             </div>
         </div>
     )

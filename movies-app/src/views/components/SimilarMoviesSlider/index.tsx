@@ -83,7 +83,7 @@ function SimilarMoviesSlider({ id, genres }: SimilarMoviesSliderProps) {
                     return <SwiperSlide key={movie.id}>
                         <Link to={`/movie/${movie.id}`} className='similar_movie_slide rounded relative'>
                             <img className="rounded" src={movie.backgroundPath} alt='similar movie' />
-                            <div className='similar_movie-title w-36 absolute bottom-2 left-2'>{movie.title}</div>
+                            <div className='similar_movie-title w-36 absolute bottom-3 left-3'>{movie.title}</div>
                         </Link>
                     </SwiperSlide>
                 })}

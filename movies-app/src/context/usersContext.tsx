@@ -1,50 +1,54 @@
-import { ReactNode, createContext, useContext, useEffect, useReducer, useState } from "react";
-import User from "../types/user";
+import { Dispatch, ReactNode, createContext, useContext, useReducer } from "react";
 // import { useReducer } from "react";
 
-const UsersContext = createContext<User | undefined>(undefined);
+interface Reducer {
+  user: any,
+  userDispatch: Dispatch<ReducerAction>
+}
+
+const UsersContext = createContext<Reducer | undefined>(undefined);
 
 interface UsersContextProviderProps {
   children: ReactNode;
 }
 
-const enum REDUCER_ACTION_TYPE {
-  SET_USER,
+interface ReducerAction {
+  type: string,
+  payload: any,
 }
 
-type ReducerAction = {
-  type: REDUCER_ACTION_TYPE,
-  payload: User,
+const initialState = {
+  currentUser: null,
 }
 
-const initialSate = {
-  currentUser: { id: 0, email: 'lol', password: 'lol' },
-}
 //DODAJ REDUCER SA DISPATCH OPCIJAMA
 export function UsersContextProvider({ children }: UsersContextProviderProps) {
 
-  function userReducer(state = initialSate, action: ReducerAction) {
+  const reducer = (state: any, action: ReducerAction) => {
     switch (action.type) {
-      case REDUCER_ACTION_TYPE.SET_USER:
-        initialSate.currentUser = action.payload;
-        break;
+      case 'SET_USER':
+        console.log("SETTING USER")
+        initialState.currentUser = action.payload;
+        console.log(initialState.currentUser);
+        return initialState.currentUser;
       default:
         throw new Error();
     }
   }
 
+  const [currentUser, dispatch] = useReducer(reducer, initialState.currentUser);
   return (
 
-    <UsersContext.Provider value={initialSate.currentUser}> {children} </UsersContext.Provider>
+    <UsersContext.Provider value={{ user: currentUser, userDispatch: dispatch }}> {children} </UsersContext.Provider>
   )
 }
 
-// export function useCurrentUser() {
-//   const currentUser = useContext(UsersContext);
-//   console.log(currentUser)
-//   if (currentUser === undefined) {
-//     throw new Error("User must be used within a UsersProvider");
-//   }
-//   return currentUser;
-// }
+export function useCurrentUser() {
+  const user = useContext(UsersContext);
+  console.log(user)
+  if (user === undefined) {
+    throw new Error("User must be used within a UsersProvider");
+  }
+  return user;
+}
 

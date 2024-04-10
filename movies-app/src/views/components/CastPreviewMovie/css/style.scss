@@ -1,1 +1,6 @@
-@import '../../../../index.scss';
+@import "../../../../index.scss";
+
+.cast_preview_movie_title {
+  font-size: $large_text;
+  font-weight: 500;
+}

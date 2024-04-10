@@ -13,9 +13,9 @@ export default function GenresDropdown() {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded px-3 py-2 text-sm font-semibold text-gray-900">
+                <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded  px-1 py-1 ">
                     Movies by Genre
-                    <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+                    <ChevronDownIcon className=" h-5 w-5  self-center" aria-hidden="true" />
                 </Menu.Button>
             </div>
 

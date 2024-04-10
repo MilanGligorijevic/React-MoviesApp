@@ -14,7 +14,7 @@ function TrendingMoviesSlider() {
     return (
         <>
             <div className='flex flex-col'>
-                <div className='trending_movies_slider-title w-5/6 self-center'>
+                <div className='trending_movies_slider-title w-5/6 self-center mt-10 mb-1'>
                     <Link to="/trendingmovies">Trending movies</Link>
                 </div>
                 <div className='trending_movies_slider-text mb-3 w-5/6 self-center'>Most popular movies right now</div>
@@ -32,7 +32,7 @@ function TrendingMoviesSlider() {
                     return <SwiperSlide key={movie.id}>
                         <Link to={`/movie/${movie.id}`} className='trending_movie_slide rounded relative'>
                             <img className="rounded" src={movie.backgroundPath} alt='trending movie' />
-                            <div className='trending_movie-info flex flex-col  justify-center '>
+                            <div className='trending_movie-info flex flex-col  justify-center absolute left-5 bottom-2'>
                                 <div className='trending_movie-title'>{movie.title}</div>
                                 <div className='trending_movie-release'>{movie.releaseDate.slice(0, 4)}</div>
                             </div>

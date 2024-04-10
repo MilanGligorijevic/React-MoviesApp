@@ -65,7 +65,7 @@ function SimilarMoviesSlider({ id, genres }: SimilarMoviesSliderProps) {
 
     return (
         <>
-            <div className='flex flex-col'>
+            <div className='flex flex-col mt-8'>
                 <div className='similar_movies_slider-text mb-3 w-5/6 self-center'>People also watched</div>
             </div>
             <Swiper

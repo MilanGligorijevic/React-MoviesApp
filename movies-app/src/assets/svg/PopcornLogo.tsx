@@ -1,6 +1,6 @@
-export const PopcornLogo = () => {
+export const PopcornLogo = (props: any) => {
     return (
-        <svg fill="#111111" height="47px" width="47px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xmlSpace="preserve" stroke="#1d63ff">
+        <svg fill={props.color} height={props.height+"px"} width={props.width+"px"} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xmlSpace="preserve" stroke="#111111">
 
             <g id="SVGRepo_bgCarrier" stroke-width="0" />
 

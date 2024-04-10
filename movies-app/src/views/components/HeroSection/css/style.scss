@@ -2,5 +2,24 @@
 
 .hero_section {
   height: 48vh;
-  background: linear-gradient(45deg, $color_blue, #1d65ffcb);
+  // background: linear-gradient(45deg, $color_blue, #1d65ffcb);
+  background-color: $color_black;
+
+  &-text{
+    font-size: $xl_text;
+    font-weight: 500;
+    color: $color_white;
+  }
+
+  &-item{
+    font-size: $medium_text;
+    color: $color_white;
+  }
+
+  .hero_section_button{
+    background-color: $color_yellow;
+    color: $color_black;
+    font-size: $small_text;
+    font-weight: 500;
+  }
 }

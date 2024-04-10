@@ -5,9 +5,22 @@
   color: $color_white;
   font-size: $small_text;
 
+  .footer_top{
+    .footer_about_us, .footer_contact, .footer_socials{
+      font-size: $small_text;
+      color: $color_yellow;
+      font-weight: 500;
+      .footer_item{
+        font-size: $small_text;
+        color: $color_white;
+        font-weight: 400;
+      }
+    }
+  }
+
   .footer_bottom {
     background-color: $color_yellow;
-    color: $color_blue;
+    color: $color_black;
     font-size: $small_text;
   }
 }

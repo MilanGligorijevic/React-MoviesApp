@@ -29,6 +29,10 @@
   }
 
   .single_show_button-add-to-watch-list {
-    background-color: $color_yellow;
+    background-color: $color_black;
+    color: $color_yellow;
+    border: 1px solid $color_yellow;
+    font-size: $small_text;
+    font-weight: 500;
   }
 }

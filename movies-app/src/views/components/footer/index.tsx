@@ -1,31 +1,38 @@
 import React from 'react'
 import './css/style.scss'
+import { FacebookIcon } from '../../../assets/svg/FacebookIcon'
+import { InstagramIcon } from '../../../assets/svg/InstagramIcon'
+import { TwitterIcon } from '../../../assets/svg/TwitterIcon'
 
 function Footer() {
     return (
-        <div className='footer_main '>
-            <div className='footer_top flex justify-center items-start gap-20 p-3'>
+        <div className='footer_main relative mt-16'>
+            <div className='footer_top flex justify-center items-start gap-20 p-6 h-36'>
+                {/* <div className='absolute left-20 top-5'>
+                <PopcornLogo height={80} width={80} color="#ffffff"/>
+                </div> */}
                 <div className='footer_about_us'>
-                    <p>About us</p>
-                    <p>About POPCORN</p>
-                    <p>Purpose</p>
-                    <p>Careers</p>
+                    <h1>COMPANY</h1>
+                    <p className='footer_item cursor-pointer'>About</p>
+                    <p className='footer_item cursor-pointer'>Purpose</p>
+                    <p className='footer_item cursor-pointer'>Careers</p>
                 </div>
                 <div className='footer_contact'>
-                    <p>Contact Us</p>
-                    <p>Customer service</p>
-                    <p>(000) 123-4567</p>
+                    <h1>USEFUL LINKS</h1>
+                    <p className='footer_item cursor-pointer'>Support</p>
+                    <p className='footer_item cursor-pointer'>Contact</p>
                 </div>
                 <div className='footer_socials'>
-                    <p>Socials</p>
-                    <p>Facebook</p>
-                    <p>Instagram</p>
-                    <p>Twitter</p>
-                    <p>Youtube</p>
+                    <h1>SOCIALS</h1>
+                    <div className='flex gap-3'>
+                    <FacebookIcon />
+                    <InstagramIcon />
+                    <TwitterIcon />
+                    </div>
                 </div>
             </div>
-            <div className='footer_bottom text-center font-bold p-3'>
-                <div>© 2024 POPCORN. All rights reserved. by MG</div>
+            <div className='footer_bottom text-center p-3'>
+                <div>  <span className='font-semibold'>© 2024 POPCORN.</span> All rights reserved. by <span className='font-semibold'>MG</span></div>
             </div>
         </div>
     )

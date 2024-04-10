@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './css/style.scss'
 import { useParams } from 'react-router'
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import Movie from '../../../types/movie';
 import MoviePreview from '../../components/MoviePreview';
 import Navbar from '../../components/Navbar';
+import Footer from '../../components/footer';
 
 function GenresMovies() {
     const { genreId, genreName } = useParams();
@@ -61,7 +62,7 @@ function GenresMovies() {
         <div className='main_genres'>
             <Navbar />
             <div className='genre_container flex-col ml-20 mt-10'>
-                <div className='genre-title'>Movies by Genre / {genreName}</div>
+                <div className='genre_title'>Movies by Genre / <span className='font-semibold'>{genreName}</span></div>
                 <div className='flex flex-wrap gap-3 mt-5'>
                     {moviesByGenre.map((movie: Movie) => {
                         return <MoviePreview key={movie.id} {...movie} />
@@ -69,7 +70,7 @@ function GenresMovies() {
                 </div>
 
             </div>
-
+            <Footer />
 
         </div>
 

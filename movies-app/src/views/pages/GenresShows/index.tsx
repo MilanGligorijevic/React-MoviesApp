@@ -5,6 +5,7 @@ import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Show from '../../../types/show';
 import ShowPreview from '../../components/ShowPreview';
+import Footer from '../../components/footer';
 
 function GenresShows() {
     const { genreId, genreName } = useParams();
@@ -42,7 +43,7 @@ function GenresShows() {
                     releaseDate: show.first_air_date,
                     posterPath: `https://image.tmdb.org/t/p/original/${show.poster_path}`,
                 }
-                dataShows.push(newShow);
+                return dataShows.push(newShow);
             })
             setShowsByGenre(dataShows);
         }
@@ -54,14 +55,14 @@ function GenresShows() {
         <div className='main_genres_shows'>
             <Navbar />
             <div className='genre_container flex-col ml-20 mt-10'>
-                <div className='genre-title'>Shows by Genre / {genreName}</div>
+                <div className='genre_title'>Shows by Genre / <span className='font-semibold'>{genreName}</span></div>
                 <div className='flex flex-wrap gap-3 mt-5'>
                     {showsByGenre.map((show: Show) => {
                         return <ShowPreview key={show.id} {...show} />
                     })}
                 </div>
             </div>
-
+            <Footer />
 
         </div>
 

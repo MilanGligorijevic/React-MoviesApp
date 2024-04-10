@@ -1,10 +1,12 @@
 @import "../../../../index.scss";
 
+.trending_shows_slider-title{
+  font-size: $large_text;
+  font-weight: 500;
+}
+
 .trending_show-info {
-  position: absolute;
-  bottom: 5%;
-  left: 10%;
-  .trending_show-title {
+   .trending_show-title {
     font-size: $medium_text;
     color: $color_white;
     font-weight: 600;

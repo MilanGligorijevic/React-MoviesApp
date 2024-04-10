@@ -1,9 +1,12 @@
 @import "../../../../index.scss";
 
+.trending_movies_slider-title{
+  font-size: $large_text;
+  font-weight: 500;
+  
+}
+
 .trending_movie-info {
-  position: absolute;
-  bottom: 5%;
-  left: 10%;
   .trending_movie-title {
     font-size: $medium_text;
     color: $color_white;

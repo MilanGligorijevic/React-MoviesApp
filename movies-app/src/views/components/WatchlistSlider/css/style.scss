@@ -1,0 +1,20 @@
+@import "../../../../index.scss";
+
+.watchlist_slider-title{
+  font-size: $large_text;
+  font-weight: 500;
+}
+
+.trending_show-info {
+   .trending_show-title {
+    font-size: $medium_text;
+    color: $color_white;
+    font-weight: 600;
+  }
+
+  .trending_show-release {
+    font-size: $small_text;
+    color: $color_white;
+    font-weight: 600;
+  }
+}

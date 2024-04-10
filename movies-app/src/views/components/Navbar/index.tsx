@@ -15,17 +15,18 @@ function Navbar() {
         <GenresContextProvider>
             <GenresShowsContextProvider>
                 <nav className='main_navbar h-20 gap-10'>
-                    <Link to="/" className='navbar_logo ml-20'>
-                        <PopcornLogo />
+                    <Link to="/" className='navbar_logo ml-32'>
+                        <PopcornLogo height={51} width={51}/>
                         <div className='navbar_logo-name'>POP <br></br>CORN</div>
                     </Link>
                     <SearchBar />
                     <TrendingDropdown />
                     <GenresDropdown />
                     <GenresShowsDropdown />
-                    <Link to="/watchlist">Watchlist</Link>
+                    <Link to="/watchlist">+Watchlist</Link>
                     <div className='ml-auto mr-5'>
                         <Link to="/login">Log in</Link>
+                        <span> | </span>
                         <Link to="/signin">Sign up</Link>
                     </div>
                 </nav>

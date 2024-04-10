@@ -4,6 +4,7 @@ import TrendingMoviesSlider from '../../components/TrendingMoviesSlider'
 import Footer from '../../components/footer'
 import TrendingShowsSlider from '../../components/TrendingShowsSlider'
 import HeroSection from '../../components/HeroSection'
+import WatchlistSlider from '../../components/WatchlistSlider'
 
 function Home() {
     return (
@@ -12,6 +13,7 @@ function Home() {
             <HeroSection />
             <TrendingMoviesSlider />
             <TrendingShowsSlider />
+            <WatchlistSlider />
             <Footer />
         </div>
     )

@@ -7,6 +7,7 @@ import Show from '../../../types/show';
 import Footer from '../../components/footer';
 import { Rating } from '@mui/material';
 import SimilarShowsSlider from '../../components/SimilarShowsSlider';
+import CastPreviewShow from '../../components/CastPreviewShow';
 
 function SingleMovie() {
     const { showId } = useParams();
@@ -77,9 +78,10 @@ function SingleMovie() {
                     </div>
                 </div>
                 <div className='absolute top-12 right-28'>
-                    <button className='single_show_button-add-to-watch-list rounded'>ADD TO WATCHLIST</button>
+                    <button className='single_show_button-add-to-watch-list rounded p-2.5'>+ ADD TO WATCHLIST</button>
                 </div>
             </div>
+            <CastPreviewShow />
             <SimilarShowsSlider {...showDetails} />
             <Footer />
         </div>

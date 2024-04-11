@@ -1,5 +1,6 @@
-import { Dispatch, ReactNode, createContext, useContext, useReducer } from "react";
-// import { useReducer } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { Dispatch, ReactNode, createContext, useContext, useEffect, useReducer } from "react";
+import { auth } from "../firebase/config";
 
 interface Reducer {
   user: any,
@@ -21,8 +22,18 @@ const initialState = {
   currentUser: null,
 }
 
-//DODAJ REDUCER SA DISPATCH OPCIJAMA
 export function UsersContextProvider({ children }: UsersContextProviderProps) {
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const currUser = { userId: user.uid, userEmail: user.email };
+            dispatch({ type: 'SET_USER', payload: currUser }) //ukoliko promenimo tab ili zatvorimo browser, user ce i dalje ostati ulogovan
+        } else {
+            dispatch({type: 'SET_USER', payload: null});
+        }
+    });
+}, [])
 
   const reducer = (state: any, action: ReducerAction) => {
     switch (action.type) {

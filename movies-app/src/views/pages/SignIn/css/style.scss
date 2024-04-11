@@ -1,0 +1,16 @@
+@import '../../../../index.scss';
+
+.sign_in_wrapper{
+    margin-bottom: 22vh;
+}
+
+.sign_in_container_title{
+    font-size: $large_text;
+    font-weight: 400;
+}
+
+.sign_in_btn{
+    background-color: $color_yellow;
+    font-size: $medium_text;
+    font-weight: 500;
+}

@@ -44,9 +44,7 @@ function Navbar() {
                         </div>
                         :
                         <div className='ml-auto mr-5'>
-                            <Link to="/login">Log in</Link>
-                            <span> | </span>
-                            <Link to="/signin">Sign up</Link>
+                            <Link to="/login">Sign in</Link>
                         </div>
 
 

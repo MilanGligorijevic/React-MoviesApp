@@ -1,55 +1,60 @@
-@import '../../../../index.scss';
+@import "../../../../index.scss";
 
-.log_in_wrapper{
-    margin-bottom: 20vh;
+.log_in_wrapper {
+  margin-bottom: 20vh;
 }
 
-.log_in_container{ 
-    font-size: $medium_text;
-    font-weight: 500;
-&_title{
+.log_in_container {
+  font-size: $medium_text;
+  font-weight: 500;
+  &_title {
     font-size: $large_text;
     font-weight: 400;
-}
-.log_in_btn{
+  }
+  .log_in_btn {
     background-color: $color_yellow;
-}
+  }
 
-.forgot_pass_btn{
+  .log_in_input {
+    font-weight: 400;
+  }
+
+  .forgot_pass_btn {
     font-size: $xs_text;
     font-weight: 400;
-}
+  }
 
-.separation_line-horizontal{
-   width: 100%; 
-   text-align: center; 
-   border-bottom: 1px solid rgba(156, 163, 175, 1); 
-   line-height: 0.1em;
-   margin: 10px 0 20px; 
+  .separation_line-horizontal {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(156, 163, 175, 1);
+    line-height: 0.1em;
+    margin: 10px 0 20px;
 
-   span{
-    background:#fff; 
-    padding:0 10px; 
-    font-size: $small_text;
-    font-weight: 400;
-    color: rgba(156, 163, 175, 1);
-   }
-}
+    span {
+      background: #fff;
+      padding: 0 10px;
+      font-size: $small_text;
+      font-weight: 400;
+      color: rgba(156, 163, 175, 1);
+    }
+  }
 
-.sign_up_btn, .sign_up_google_btn{
+  .sign_up_btn,
+  .sign_up_google_btn {
     border: 1px solid $color_yellow;
-}
-}
-
-.benefits_container{
-    .benefits_title{
-        font-size: $large_text;
-    }  
-    .benefits_item{
-        font-size: $medium_text;
-    } 
+  }
 }
 
-.separation_line{
-    border-left: 1px solid gray;
+.benefits_container {
+  .benefits_title {
+    font-size: $large_text;
+  }
+  .benefits_item {
+    font-size: $medium_text;
+  }
+}
+
+.separation_line {
+  border-left: 1px solid gray;
 }

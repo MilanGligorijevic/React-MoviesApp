@@ -10,7 +10,7 @@ import GenresShowsDropdown from '../GenresShowsDropdown';
 import { GenresShowsContextProvider } from '../../../context/genreShowsContext';
 import { useCurrentUser } from '../../../context/usersContext';
 import { signOut } from "firebase/auth";
-import { auth } from '../../../firebase/config';
+import { auth, getUsersWatchlist } from '../../../firebase/config';
 
 
 function Navbar() {
@@ -37,7 +37,7 @@ function Navbar() {
                     <TrendingDropdown />
                     <GenresDropdown />
                     <GenresShowsDropdown />
-                    {currentUser.user && <Link to="/watchlist">+Watchlist</Link>}
+                    {currentUser.user && <Link to="/watchlist" onClick={() => getUsersWatchlist(currentUser.user.userId)}>+Watchlist</Link>}
                     {currentUser.user ?
                         <div className='ml-auto mr-5'>
                             <button onClick={() => handleSignOut()}>Sign out</button>

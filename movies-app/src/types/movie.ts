@@ -9,6 +9,7 @@ type Movie = {
   posterPath: string;
   backgroundPath?: string;
   rating?: number;
+  mediaType?: string;
 };
 
 export default Movie;

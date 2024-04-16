@@ -33,7 +33,7 @@ export default function GenresDropdown() {
                         {
                             genres.map((genre) => {
                                 return (
-                                    <Menu.Item>
+                                    <Menu.Item key={genre.id}>
                                         {({ active }) => (
                                             <Link
                                                 to={`/genreMovies/${genre.id}/${genre.name}`}

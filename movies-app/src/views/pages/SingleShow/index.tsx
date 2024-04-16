@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './css/style.scss'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Show from '../../../types/show';
@@ -8,11 +8,15 @@ import Footer from '../../components/footer';
 import { Rating } from '@mui/material';
 import SimilarShowsSlider from '../../components/SimilarShowsSlider';
 import CastPreviewShow from '../../components/CastPreviewShow';
+import { addToWatchlist } from '../../../firebase/config';
+import { useCurrentUser } from '../../../context/usersContext';
 
 function SingleMovie() {
     const { showId } = useParams();
     const [showDetails, setShowDetails] = useState<Show>();
     const [rating, setRating] = useState<number | undefined>(0);
+    const currentUser = useCurrentUser();
+    const navigateToLogInPage = useNavigate();
 
 
     function handleRatingChange(e: any) {
@@ -34,16 +38,17 @@ function SingleMovie() {
             const { data } = await axios.request(
                 options
             );
-            console.log("HERE" + data.name)
+            console.log(data)
             const newShow: Show = {
                 id: data.id,
                 title: data.name,
                 overview: data.overview,
                 genres: data.genres,
-                releaseDate: data.release_date,
+                releaseDate: data.first_air_date,
                 posterPath: `https://image.tmdb.org/t/p/original/${data.poster_path}`,
                 backgroundPath: `https://image.tmdb.org/t/p/original/${data.backdrop_path}`,
-                rating: Math.round(data.vote_average * 10) / 20
+                rating: Math.round(data.vote_average * 10) / 20,
+                mediaType: 'show'
             }
             setShowDetails(newShow);
             setRating(newShow.rating);
@@ -78,7 +83,7 @@ function SingleMovie() {
                     </div>
                 </div>
                 <div className='absolute top-12 right-28'>
-                    <button className='single_show_button-add-to-watch-list rounded p-2.5'>+ ADD TO WATCHLIST</button>
+                    <button className='single_show_button-add-to-watch-list rounded p-2.5' onClick={() => currentUser.user !== null ? addToWatchlist(currentUser.user.userId, showDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
                 </div>
             </div>
             <CastPreviewShow />

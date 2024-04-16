@@ -9,6 +9,7 @@ type Show = {
   posterPath: string;
   backgroundPath?: string;
   rating?: number;
+  mediaType?: string;
 };
 
 export default Show;

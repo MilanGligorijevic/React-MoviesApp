@@ -1,0 +1,12 @@
+@import '../../../../index.scss';
+
+.watchlist_item_preview_title {
+    font-size: $small_text;
+    font-weight: 600;
+    color: $color_black;
+  }
+  
+  .watchlist_item_preview_release_date {
+    font-size: $small_text;
+    color: $color_black;
+  }

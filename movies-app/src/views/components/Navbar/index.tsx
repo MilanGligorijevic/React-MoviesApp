@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/style.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import GenresDropdown from '../GenresDropdown';
 import { GenresContextProvider } from '../../../context/genreContext';
 import SearchBar from '../SearchBar';
@@ -16,10 +16,13 @@ import { auth, getUsersWatchlist } from '../../../firebase/config';
 function Navbar() {
     const currentUser = useCurrentUser();
     //koristimo currentUsera za prikaz odredjenih komponenti ukoliko je korisnik ulogovan
+    const navigateToHomePage = useNavigate();
+
 
     function handleSignOut() {
         signOut(auth).then(() => {
             currentUser.userDispatch({ type: 'SET_USER', payload: null });
+            navigateToHomePage('/');
         }).catch((error) => {
             console.log("User signed out")
         });

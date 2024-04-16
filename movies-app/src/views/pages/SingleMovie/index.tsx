@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './css/style.scss'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Movie from '../../../types/movie';
@@ -8,14 +8,17 @@ import Footer from '../../components/footer';
 import Rating from '@mui/material/Rating';
 import SimilarMoviesSlider from '../../components/SimilarMoviesSlider';
 import CastPreviewMovie from '../../components/CastPreviewMovie';
-import { addToWatchlist } from '../../../firebase/config';
 import { useCurrentUser } from '../../../context/usersContext';
+import { useWatchlist } from '../../../context/watchlistContext';
 
 function SingleMovie() {
     const { movieId } = useParams();
     const [movieDetails, setMovieDetails] = useState<Movie>();
     const [rating, setRating] = useState<number | undefined>(0);
     const currentUser = useCurrentUser();
+    const watchlist = useWatchlist();
+    const navigateToLogInPage = useNavigate();
+    
 
     function handleRatingChange(e: any) {
         setRating(e.target.value);
@@ -45,7 +48,9 @@ function SingleMovie() {
                 releaseDate: data.release_date,
                 posterPath: `https://image.tmdb.org/t/p/original/${data.poster_path}`,
                 backgroundPath: `https://image.tmdb.org/t/p/original/${data.backdrop_path}`,
-                rating: Math.round(data.vote_average * 10) / 20
+                rating: Math.round(data.vote_average * 10) / 20,
+                mediaType: 'movie'
+                //hardcodovan mediaType jer znamo da smo na SingleMovie stranici
             }
             setMovieDetails(newMovie);
             setRating(newMovie.rating)
@@ -79,7 +84,7 @@ function SingleMovie() {
                     </div>
                 </div>
                 <div className='absolute top-12 right-28'>
-                    <button className='single_movie_button-add-to-watch-list rounded p-2.5' onClick={() => addToWatchlist(currentUser.user.userId, movieDetails)}>+ ADD TO WATCHLIST</button>
+                    <button className='single_movie_button-add-to-watch-list rounded p-2.5' onClick={() => currentUser.user !== null && movieDetails ? watchlist.addToWatchlistAndFirebase(movieDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
                 </div>
             </div>
             <CastPreviewMovie />

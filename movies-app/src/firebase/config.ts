@@ -32,6 +32,7 @@ export const auth = getAuth(app);
 const db = getFirestore(app);
 
 const colRef = collection(db, "watchlists");
+let usersWatchlist: any = [];
 
 getDocs(colRef)
   .then((snapshot) => {
@@ -50,11 +51,28 @@ async function addToWatchlist(
   userId: string,
   itemToAdd: Movie | Show | undefined
 ) {
+
   await setDoc(
     doc(db, "watchlists", userId),
     {
       userId,
-      watchlist: [itemToAdd],
+      watchlist: [...usersWatchlist, itemToAdd]
+    },
+    { merge: true }
+  );
+}
+
+async function removeFromWatchlist(
+  userId: string,
+  itemToRemove: number
+) {
+  console.log(userId, itemToRemove)
+
+  await setDoc(
+    doc(db, "watchlists", userId),
+    {
+      userId,
+      watchlist: usersWatchlist.filter((item: Movie | Show | undefined) =>  item?.id !== itemToRemove)
     },
     { merge: true }
   );
@@ -67,7 +85,8 @@ async function getUsersWatchlist(userId: string) {
 
   if (docSnap.exists()) {
     console.log("Document data:", docSnap.data().watchlist);
-    return docSnap.data().watchlist;
+    usersWatchlist = await docSnap.data().watchlist;
+    return usersWatchlist;
   } else {
     // docSnap.data() will be undefined in this case
     console.log("No such document!");
@@ -75,4 +94,4 @@ async function getUsersWatchlist(userId: string) {
   }
 }
 
-export { addToWatchlist, getUsersWatchlist };
+export { addToWatchlist, getUsersWatchlist, removeFromWatchlist };

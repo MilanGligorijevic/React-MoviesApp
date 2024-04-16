@@ -37,6 +37,7 @@ export function UsersContextProvider({ children }: UsersContextProviderProps) {
 
   const reducer = (state: any, action: ReducerAction) => {
     switch (action.type) {
+      // ova akcija sluzi i za logovanje i izlogovanje korisnika
       case 'SET_USER':
         console.log("SETTING USER")
         initialState.currentUser = action.payload;

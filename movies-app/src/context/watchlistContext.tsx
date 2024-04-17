@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useEffect, useReducer, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import Show from "../types/show";
 import Movie from "../types/movie";
 import { addToWatchlist, getUsersWatchlist, removeFromWatchlist } from "../firebase/config";
@@ -7,7 +7,7 @@ import { useCurrentUser } from "./usersContext";
 interface WatchlistContextValue {
   watchlist: (Movie | Show | undefined)[];
   addToWatchlistAndFirebase: (item: Movie | Show) => Promise<void>;
-  removeFromWatchlistAndFirebase: (itemId: number) => Promise<void>;
+  removeFromWatchlistAndFirebase: (item: Movie | Show) => Promise<void>;
 }
 
 const WatchlistContext = createContext<WatchlistContextValue | undefined>(undefined);
@@ -37,21 +37,20 @@ export function WatchlistContextProvider({ children }: WatchlistContextProviderP
       if (watchlist?.some((i) => i?.id === item.id)) return;
       // film postoji i prekidamo dodavanje, obavestiti korisnika da film postoji u watchlistu
       await addToWatchlist(currentUser.user.userId, item);
-      if (watchlist.length === 0) {
-        const oneItem = [item];
-        setWatchlist(oneItem);
-        return;
-      }
-      setWatchlist(prevWatchlist => [...prevWatchlist, item]);
+
+      setWatchlist(prevWatchlist => {
+        if (prevWatchlist !== undefined) return [...prevWatchlist, item];
+        return [item];
+      });
     } else {
       console.log("User not logged in");
     }
   };
 
-  const removeFromWatchlistAndFirebase = async (itemId: number) => {
+  const removeFromWatchlistAndFirebase = async (item: Movie | Show | undefined) => {
     if (currentUser.user !== null) {
-      await removeFromWatchlist(currentUser.user.userId, itemId);
-      setWatchlist(prevWatchlist => prevWatchlist.filter(item => item?.id !== itemId));
+      await removeFromWatchlist(currentUser.user.userId, item);
+      setWatchlist(prevWatchlist => prevWatchlist.filter(removeItem => removeItem?.id !== item?.id));
     } else {
       console.log("User not logged in");
     }

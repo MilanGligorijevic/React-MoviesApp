@@ -13,14 +13,14 @@ function Watchlist() {
             <Navbar />
             <div className='watchlist_container flex-col ml-20 mt-10 mb-10'>
                 <div>
-                    {watchlist.watchlist.length > 0 ? <div className='watchlist-title'>Your watchlist </div>
+                    {watchlist.watchlist?.length > 0 ? <div className='watchlist-title'>Your watchlist </div>
                         :
                         <div className='watchlist-title'>Your watchlist is empty</div>}
                 </div>
-                {watchlist.watchlist.length > 0 ?
+                {watchlist.watchlist?.length > 0 ?
                     <div className='flex flex-wrap gap-3 mt-5'>
                         {watchlist.watchlist.map((item: any) => {
-                            return <WatchlistItemPreview key={item.id} {...item} />
+                            return <WatchlistItemPreview key={item.id} item={item} />
                         })}
                     </div>
                     :

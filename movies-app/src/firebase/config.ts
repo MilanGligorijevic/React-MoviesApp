@@ -34,7 +34,6 @@ export const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
 
 const colRef = collection(db, "watchlists");
-let usersWatchlist: (Movie | Show | undefined)[] = [];
 
 getDocs(colRef)
   .then((snapshot) => {
@@ -52,31 +51,17 @@ async function addToWatchlist(
   userId: string,
   itemToAdd: Movie | Show | undefined
 ) {
-  // await setDoc(
-  //   doc(db, "watchlists", userId),
-  //   {
-  //     userId,
-  //     watchlist: [...usersWatchlist, itemToAdd],
-  //   },
-  //   { merge: true }
-  // );
   const watchlistRef = doc(db, "watchlists", userId);
   await updateDoc(watchlistRef, {
     watchlist: arrayUnion(itemToAdd),
   });
 }
 
-async function removeFromWatchlist(userId: string, itemToRemove: number) {
-  // await setDoc(
-  //   doc(db, "watchlists", userId),
-  //   {
-  //     userId,
-  //     watchlist: usersWatchlist.filter(
-  //       (item: Movie | Show | undefined) => item?.id !== itemToRemove
-  //     ),
-  //   },
-  //   { merge: true }
-  // );
+//funkcija za brisanje filma/serije iz watchlist
+async function removeFromWatchlist(
+  userId: string,
+  itemToRemove: Movie | Show | undefined
+) {
   const watchlistRef = doc(db, "watchlists", userId);
   await updateDoc(watchlistRef, {
     watchlist: arrayRemove(itemToRemove),
@@ -91,9 +76,11 @@ async function getUsersWatchlist(userId: string) {
   if (docSnap.exists()) {
     return await docSnap.data().watchlist;
   } else {
-    // docSnap.data() will be undefined in this case
+    await setDoc(docRef, {
+      watchlist: [],
+    });
     console.log("No such document!");
-    return usersWatchlist;
+    return;
   }
 }
 

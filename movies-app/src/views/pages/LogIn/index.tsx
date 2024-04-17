@@ -45,11 +45,8 @@ function LogIn() {
         e.preventDefault();
         signInWithPopup(auth, provider)
             .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
                 // const token = credential?.accessToken;
-                console.log(credential);
                 const user = result.user;
-                console.log(user);
                 logInUser(user.uid, user.email);
                 navigateToHomePage('/');
             }).catch((error) => {

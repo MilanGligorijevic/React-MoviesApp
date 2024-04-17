@@ -6,7 +6,7 @@ import { TwitterIcon } from '../../../assets/svg/TwitterIcon'
 
 function Footer() {
     return (
-        <div className='footer_main relative mt-16'>
+        <div className='footer_main relative'>
             <div className='footer_top flex justify-center items-start gap-20 p-6 h-36'>
                 {/* <div className='absolute left-20 top-5'>
                 <PopcornLogo height={80} width={80} color="#ffffff"/>
@@ -25,14 +25,14 @@ function Footer() {
                 <div className='footer_socials'>
                     <h1>SOCIALS</h1>
                     <div className='flex gap-3'>
-                    <FacebookIcon />
-                    <InstagramIcon />
-                    <TwitterIcon />
+                        <FacebookIcon />
+                        <InstagramIcon />
+                        <TwitterIcon />
                     </div>
                 </div>
             </div>
             <div className='footer_bottom text-center p-3'>
-                <div>  <span className='font-semibold'>© 2024 POPCORN.</span> All rights reserved. by <span className='font-semibold'>MG</span></div>
+                <div>  <span className='font-semibold'>© 2024 <a href="https://github.com/MilanGligorijevic/React-MoviesApp" target='_blank' rel="noreferrer">POPCORN.</a></span> All rights reserved. by <span className='font-semibold'><a href="https://github.com/MilanGligorijevic" target='_blank' rel="noreferrer">MG</a></span></div>
             </div>
         </div>
     )

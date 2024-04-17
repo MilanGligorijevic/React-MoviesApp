@@ -1,0 +1,13 @@
+@import "../../../../index.scss";
+
+.error_container {
+  min-height: 50vh;
+  h1 {
+    font-size: $xl_text;
+    font-weight: 500;
+  }
+  h2 {
+    font-size: $medium_text;
+    font-weight: 500;
+  }
+}

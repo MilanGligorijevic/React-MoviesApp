@@ -1,14 +1,15 @@
-import { error } from "console";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import {
   collection,
   getFirestore,
   getDocs,
   getDoc,
-  addDoc,
   setDoc,
   doc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
 } from "firebase/firestore";
 import Show from "../types/show";
 import Movie from "../types/movie";
@@ -28,11 +29,12 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
 
 const db = getFirestore(app);
 
 const colRef = collection(db, "watchlists");
-let usersWatchlist: any = [];
+let usersWatchlist: (Movie | Show | undefined)[] = [];
 
 getDocs(colRef)
   .then((snapshot) => {
@@ -40,7 +42,6 @@ getDocs(colRef)
     snapshot.docs.forEach((doc) => {
       watchlist.push({ ...doc.data(), id: doc.id });
     });
-    console.log(watchlist);
   })
   .catch((error) => {
     console.log(error);
@@ -51,31 +52,35 @@ async function addToWatchlist(
   userId: string,
   itemToAdd: Movie | Show | undefined
 ) {
-
-  await setDoc(
-    doc(db, "watchlists", userId),
-    {
-      userId,
-      watchlist: [...usersWatchlist, itemToAdd]
-    },
-    { merge: true }
-  );
+  // await setDoc(
+  //   doc(db, "watchlists", userId),
+  //   {
+  //     userId,
+  //     watchlist: [...usersWatchlist, itemToAdd],
+  //   },
+  //   { merge: true }
+  // );
+  const watchlistRef = doc(db, "watchlists", userId);
+  await updateDoc(watchlistRef, {
+    watchlist: arrayUnion(itemToAdd),
+  });
 }
 
-async function removeFromWatchlist(
-  userId: string,
-  itemToRemove: number
-) {
-  console.log(userId, itemToRemove)
-
-  await setDoc(
-    doc(db, "watchlists", userId),
-    {
-      userId,
-      watchlist: usersWatchlist.filter((item: Movie | Show | undefined) =>  item?.id !== itemToRemove)
-    },
-    { merge: true }
-  );
+async function removeFromWatchlist(userId: string, itemToRemove: number) {
+  // await setDoc(
+  //   doc(db, "watchlists", userId),
+  //   {
+  //     userId,
+  //     watchlist: usersWatchlist.filter(
+  //       (item: Movie | Show | undefined) => item?.id !== itemToRemove
+  //     ),
+  //   },
+  //   { merge: true }
+  // );
+  const watchlistRef = doc(db, "watchlists", userId);
+  await updateDoc(watchlistRef, {
+    watchlist: arrayRemove(itemToRemove),
+  });
 }
 
 //funkcija za preuzimanje watchlista korisnika
@@ -84,13 +89,11 @@ async function getUsersWatchlist(userId: string) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data().watchlist);
-    usersWatchlist = await docSnap.data().watchlist;
-    return usersWatchlist;
+    return await docSnap.data().watchlist;
   } else {
     // docSnap.data() will be undefined in this case
     console.log("No such document!");
-    return;
+    return usersWatchlist;
   }
 }
 

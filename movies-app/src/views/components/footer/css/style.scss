@@ -4,13 +4,15 @@
   background-color: $color_black;
   color: $color_white;
   font-size: $small_text;
-
-  .footer_top{
-    .footer_about_us, .footer_contact, .footer_socials{
+  margin-top: auto;
+  .footer_top {
+    .footer_about_us,
+    .footer_contact,
+    .footer_socials {
       font-size: $small_text;
       color: $color_yellow;
       font-weight: 500;
-      .footer_item{
+      .footer_item {
         font-size: $small_text;
         color: $color_white;
         font-weight: 400;

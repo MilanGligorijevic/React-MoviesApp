@@ -27,7 +27,6 @@ export function ShowsContextProvider({ children }: ShowsContextProviderProps) {
             const { data } = await axios.request(
                 options
             );
-            console.log(data)
             const dataShows: Show[] = [];
             data.results.map((show: any) => {
                 const newShow: Show = {
@@ -54,7 +53,6 @@ export function ShowsContextProvider({ children }: ShowsContextProviderProps) {
 
 export function usePopularShows() {
     const popularShows = useContext(ShowsContext);
-    console.log(popularShows)
     if (popularShows === undefined) {
         throw new Error("Shows must be used within a ShowsProvider");
     }

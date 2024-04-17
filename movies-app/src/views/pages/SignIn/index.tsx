@@ -7,9 +7,11 @@ import User from '../../../types/user';
 import Footer from '../../components/footer';
 import { useCurrentUser } from '../../../context/usersContext';
 import { useNavigate } from 'react-router';
+import firebaseErrorHandler from '../../../utilities/firebaseErrorHandler';
 
 function SignIn() {
     const [userCredentials, setUserCredentials] = useState<User>({ id: 0, email: "", password: "", firstName: '', lastName: '' });
+    const [errorState, setErrorState] = useState<string>('');
     const currentUser = useCurrentUser();
     const navigateToHomePage = useNavigate();
 
@@ -29,7 +31,11 @@ function SignIn() {
 
     function handleSignup(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         e.preventDefault();
-        console.log("sign up")
+        if (userCredentials.firstName?.length === 0 || userCredentials.lastName?.length === 0) {
+            setErrorState("Please fill in your name");
+            return;
+        };
+        setErrorState('');
         createUserWithEmailAndPassword(auth, userCredentials.email, userCredentials.password)
             .then((userCredential) => {
                 const { uid, email } = userCredential.user;
@@ -37,10 +43,8 @@ function SignIn() {
                 signInUser(uid, email);
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode);
-                console.log(errorMessage);
+                setErrorState(firebaseErrorHandler(errorMessage));
             });
 
     }
@@ -58,7 +62,8 @@ function SignIn() {
                     <input type="text" name='email' onChange={(e) => handleCredentials(e)} className="sign_in_input h-8 block w-full p-4 mb-4 text-sm text-gray-900 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter email" required />
                     <label htmlFor="password">Password</label>
                     <input type="password" name='password' onChange={(e) => handleCredentials(e)} className="sign_in_input h-8 block w-full p-4 mb-5 text-sm text-gray-900 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter password" required />
-                    <button className='sign_in_btn rounded p-1 mb-1' onClick={(e) => handleSignup(e)}>Sign up</button>
+                    <button className='sign_in_btn rounded p-1 mb-2' onClick={(e) => handleSignup(e)}>Sign up</button>
+                    <div className='error mb-20 self-center'>{errorState}</div>
                 </div>
                 <div className='separation_line'></div>
                 <div className='benefits_container'>

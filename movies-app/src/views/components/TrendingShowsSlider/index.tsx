@@ -25,8 +25,6 @@ function TrendingShowsSlider() {
                 slidesPerView={5}
                 navigation={true}
                 modules={[Navigation]}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper: any) => console.log(swiper)}
             >
                 {popularShows.map((show) => {
                     return <SwiperSlide key={show.id}>

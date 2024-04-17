@@ -32,7 +32,6 @@ function GenresShows() {
             const { data } = await axios.request(
                 optionsShows
             );
-            console.log(data)
             const dataShows: Show[] = [];
             data.results.map((show: any) => {
                 const newShow: Show = {
@@ -54,7 +53,7 @@ function GenresShows() {
     return (
         <div className='main_genres_shows'>
             <Navbar />
-            <div className='genre_container flex-col ml-20 mt-10'>
+            <div className='genre_container flex-col ml-20 mt-10 mb-10'>
                 <div className='genre_title'>Shows by Genre / <span className='font-semibold'>{genreName}</span></div>
                 <div className='flex flex-wrap gap-3 mt-5'>
                     {showsByGenre.map((show: Show) => {

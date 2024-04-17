@@ -27,7 +27,6 @@ export function MoviesContextProvider({ children }: MoviesContextProviderProps) 
       const { data } = await axios.request(
         options
       );
-      console.log(data)
       const dataMovies: Movie[] = [];
       data.results.map((movie: any) => {
         const newMovie: Movie = {
@@ -39,7 +38,7 @@ export function MoviesContextProvider({ children }: MoviesContextProviderProps) 
           posterPath: `https://image.tmdb.org/t/p/original/${movie.poster_path}`,
           backgroundPath: `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
         }
-        dataMovies.push(newMovie);
+        return dataMovies.push(newMovie);
       })
       setPopularMovies(dataMovies);
     }
@@ -54,7 +53,6 @@ export function MoviesContextProvider({ children }: MoviesContextProviderProps) 
 
 export function usePopularMovies() {
   const popularMovies = useContext(MoviesContext);
-  console.log(popularMovies)
   if (popularMovies === undefined) {
     throw new Error("Movies must be used within a MoviesProvider");
   }

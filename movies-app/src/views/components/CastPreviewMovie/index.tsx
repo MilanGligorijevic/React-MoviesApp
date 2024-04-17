@@ -25,7 +25,6 @@ function CastPreviewMovie() {
             const { data } = await axios.request(
                 options
             );
-            console.log(data)
             const dataActors: Actor[] = [];
             data.cast.map((actor: any) => {
                 const newActor: Actor = {
@@ -47,7 +46,7 @@ function CastPreviewMovie() {
             <h1 className="cast_preview_movie_title mt-8 mb-3">Top cast</h1>
             <div className="flex gap-4">
                 {movieCast?.map((actor) => {
-                    return <ActorPreview {...actor} />
+                    return <ActorPreview key={actor.id} {...actor} />
                 })}
             </div>
         </div>

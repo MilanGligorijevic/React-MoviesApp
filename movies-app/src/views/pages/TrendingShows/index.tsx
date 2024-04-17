@@ -11,7 +11,7 @@ function TrendingShows() {
     return (
         <div className='trending_shows_main'>
             <Navbar />
-            <div className='ml-20 mt-10 flex-col'>
+            <div className='ml-20 mt-10 mb-10 flex-col'>
                 <div>
                     <div className='trending_shows-title'>Trending shows</div>
                     <div className='trending_shows-text'>Most popular shows right now</div>

@@ -69,13 +69,11 @@ function SimilarMoviesSlider({ id, genres }: SimilarMoviesSliderProps) {
                 <div className='similar_movies_slider-text mb-3 w-5/6 self-center'>People also watched</div>
             </div>
             <Swiper
-                className='w-5/6 mb-7'
+                className='w-5/6 mb-10'
                 spaceBetween={10}
                 slidesPerView={5}
                 navigation={true}
                 modules={[Navigation]}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper: any) => console.log(swiper)}
             >
                 {similarMovies?.filter((movie) => {
                     return movie.id !== id;

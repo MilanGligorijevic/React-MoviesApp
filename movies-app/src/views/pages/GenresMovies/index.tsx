@@ -10,7 +10,8 @@ import Footer from '../../components/footer';
 function GenresMovies() {
     const { genreId, genreName } = useParams();
     const [moviesByGenre, setMoviesByGenre] = useState<Array<Movie>>([]);
-    const numberOfPagesToLoad = 3;
+    const currentPage: number = 1;
+
 
     useEffect(() => {
 
@@ -22,7 +23,7 @@ function GenresMovies() {
                 include_adult: 'false',
                 include_video: 'false',
                 language: 'en-US',
-                page: '1',
+                page: currentPage.toString(),
                 with_genres: genreId,
             },
             headers: {
@@ -33,11 +34,9 @@ function GenresMovies() {
 
 
         async function fetchMoviesData() {
-            console.log(optionsMovies.params.page)
             const { data } = await axios.request(
                 optionsMovies
             );
-            console.log(data)
             const dataMovies: Movie[] = [];
             data.results.map((movie: any) => {
                 const newMovie: Movie = {
@@ -56,12 +55,13 @@ function GenresMovies() {
         fetchMoviesData();
 
 
+
     }, [genreId])
 
     return (
         <div className='main_genres'>
             <Navbar />
-            <div className='genre_container flex-col ml-20 mt-10'>
+            <div className='genre_container flex-col ml-20 mt-10 mb-10'>
                 <div className='genre_title'>Movies by Genre / <span className='font-semibold'>{genreName}</span></div>
                 <div className='flex flex-wrap gap-3 mt-5'>
                     {moviesByGenre.map((movie: Movie) => {

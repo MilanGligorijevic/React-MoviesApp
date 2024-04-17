@@ -25,8 +25,6 @@ function TrendingMoviesSlider() {
                 slidesPerView={5}
                 navigation={true}
                 modules={[Navigation]}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper: any) => console.log(swiper)}
             >
                 {popularMovies.map((movie) => {
                     return <SwiperSlide key={movie.id}>

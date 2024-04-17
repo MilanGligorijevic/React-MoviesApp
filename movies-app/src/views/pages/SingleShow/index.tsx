@@ -8,8 +8,8 @@ import Footer from '../../components/footer';
 import { Rating } from '@mui/material';
 import SimilarShowsSlider from '../../components/SimilarShowsSlider';
 import CastPreviewShow from '../../components/CastPreviewShow';
-import { addToWatchlist } from '../../../firebase/config';
 import { useCurrentUser } from '../../../context/usersContext';
+import { useWatchlist } from '../../../context/watchlistContext';
 
 function SingleMovie() {
     const { showId } = useParams();
@@ -17,11 +17,8 @@ function SingleMovie() {
     const [rating, setRating] = useState<number | undefined>(0);
     const currentUser = useCurrentUser();
     const navigateToLogInPage = useNavigate();
+    const watchlist = useWatchlist();
 
-
-    function handleRatingChange(e: any) {
-        setRating(e.target.value);
-    }
 
     useEffect(() => {
         const options = {
@@ -38,7 +35,6 @@ function SingleMovie() {
             const { data } = await axios.request(
                 options
             );
-            console.log(data)
             const newShow: Show = {
                 id: data.id,
                 title: data.name,
@@ -52,7 +48,6 @@ function SingleMovie() {
             }
             setShowDetails(newShow);
             setRating(newShow.rating);
-
         }
         fetchData();
     }, [showId])
@@ -69,10 +64,10 @@ function SingleMovie() {
                     <div className='single_show_details w-9/12'>
                         <div className='single_show_details-title'>{showDetails?.title}</div>
                         <Rating
-                            name="simple-controlled"
+                            name="read-only"
                             precision={0.5}
                             value={rating}
-                            onChange={(e) => handleRatingChange(e)}
+                            readOnly
                         />
                         <div className='single_show_details-genres flex gap-3 mb-5'>
                             {showDetails?.genres.map((genre) => {
@@ -83,7 +78,7 @@ function SingleMovie() {
                     </div>
                 </div>
                 <div className='absolute top-12 right-28'>
-                    <button className='single_show_button-add-to-watch-list rounded p-2.5' onClick={() => currentUser.user !== null ? addToWatchlist(currentUser.user.userId, showDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
+                    <button className='single_show_button-add-to-watch-list rounded p-2.5' onClick={() => currentUser.user !== null && showDetails ? watchlist.addToWatchlistAndFirebase(showDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
                 </div>
             </div>
             <CastPreviewShow />

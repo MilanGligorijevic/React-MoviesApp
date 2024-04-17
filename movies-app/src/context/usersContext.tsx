@@ -26,22 +26,20 @@ export function UsersContextProvider({ children }: UsersContextProviderProps) {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-        if (user) {
-          const currUser = { userId: user.uid, userEmail: user.email };
-            dispatch({ type: 'SET_USER', payload: currUser }) //ukoliko promenimo tab ili zatvorimo browser, user ce i dalje ostati ulogovan
-        } else {
-            dispatch({type: 'SET_USER', payload: null});
-        }
+      if (user) {
+        const currUser = { userId: user.uid, userEmail: user.email };
+        dispatch({ type: 'SET_USER', payload: currUser }) //ukoliko promenimo tab ili zatvorimo browser, user ce i dalje ostati ulogovan
+      } else {
+        dispatch({ type: 'SET_USER', payload: null });
+      }
     });
-}, [])
+  }, [])
 
   const reducer = (state: any, action: ReducerAction) => {
     switch (action.type) {
       // ova akcija sluzi i za logovanje i izlogovanje korisnika
       case 'SET_USER':
-        console.log("SETTING USER")
         initialState.currentUser = action.payload;
-        console.log(initialState.currentUser);
         return initialState.currentUser;
       default:
         throw new Error();
@@ -57,7 +55,6 @@ export function UsersContextProvider({ children }: UsersContextProviderProps) {
 
 export function useCurrentUser() {
   const user = useContext(UsersContext);
-  console.log(user)
   if (user === undefined) {
     throw new Error("User must be used within a UsersProvider");
   }

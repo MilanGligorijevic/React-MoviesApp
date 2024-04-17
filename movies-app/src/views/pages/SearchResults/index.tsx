@@ -49,7 +49,7 @@ function SearchResults() {
     return (
         <div className='search_results_main'>
             <Navbar />
-            <div className='ml-20 mt-10 flex-col'>
+            <div className='ml-20 mt-10 mb-10 flex-col'>
                 <div>
                     <div className='search_results-title'>Results for <strong>"{searchQuery}"</strong></div>
                 </div>

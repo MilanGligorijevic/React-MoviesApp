@@ -13,7 +13,6 @@ export function GenresContextProvider({ children }: GenresContextProviderProps) 
 
 
     useEffect(() => {
-        //fetching all movie genres
         const options = {
             method: 'GET',
             url: 'https://api.themoviedb.org/3/genre/movie/list',
@@ -27,7 +26,6 @@ export function GenresContextProvider({ children }: GenresContextProviderProps) 
             const { data } = await axios.request(
                 options
             );
-            console.log(data)
             const dataGenres: Genre[] = [];
             data.genres.map((genre: any) => {
                 const newGenre: Genre = {
@@ -48,7 +46,6 @@ export function GenresContextProvider({ children }: GenresContextProviderProps) 
 
 export function useMoviesGenres() {
     const genres = useContext(GenresContext);
-    console.log(genres)
     if (genres === undefined) {
         throw new Error("Genres must be used within a GenresProvider");
     }

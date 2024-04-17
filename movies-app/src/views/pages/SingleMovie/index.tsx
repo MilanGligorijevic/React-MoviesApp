@@ -18,11 +18,9 @@ function SingleMovie() {
     const currentUser = useCurrentUser();
     const watchlist = useWatchlist();
     const navigateToLogInPage = useNavigate();
-    
 
-    function handleRatingChange(e: any) {
-        setRating(e.target.value);
-    }
+
+
 
     useEffect(() => {
         const options = {
@@ -70,10 +68,10 @@ function SingleMovie() {
                     <div className='single_movie_details w-9/12'>
                         <div className='single_movie_details-title'>{movieDetails?.title}</div>
                         <Rating
-                            name="simple-controlled"
+                            name="read-only"
                             precision={0.5}
                             value={rating}
-                            onChange={(e) => handleRatingChange(e)}
+                            readOnly
                         />
                         <div className='single_movie_details-genres flex gap-3 mb-5'>
                             {movieDetails?.genres.map((genre) => {

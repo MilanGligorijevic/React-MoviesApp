@@ -7,34 +7,43 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper/modules";
 import { Link } from 'react-router-dom';
 import { useWatchlist } from "../../../context/watchlistContext";
+import { useCurrentUser } from "../../../context/usersContext";
 
-function WatchlistSlider(){
-    const watchlist =  useWatchlist();
-    console.log(watchlist);
+function WatchlistSlider() {
+    const watchlist = useWatchlist();
+    const currentUser = useCurrentUser();
 
     return (
         <>
             <div className='flex flex-col'>
                 <div className='watchlist_slider-title w-5/6 self-center mt-5 mb-1'>
-                    <Link to="/watchlist">From your Watchlist</Link>
+                    {currentUser.user ?
+                        <Link to="/watchlist">From your Watchlist</Link>
+                        :
+                        <Link to="/login">From your Watchlist</Link>
+                    }
                 </div>
-            {watchlist.watchlist.length>0 ? 
-            <div className='watchlist_slider-text mb-3 w-5/6 self-center'>Pick what you want to watch next</div>
-                :
-            <div className='watchlist_slider-text mb-3 w-5/6 self-center'>Add movies and shows you would like to track</div>
-            }
-
+                {currentUser.user ?
+                    ''
+                    :
+                    <div className='watchlist_slider-text mb-10 w-5/6 self-center'><span className="font-semibold">Sign in to access your watchlist</span></div>
+                }
+                {currentUser.user && <>
+                    {watchlist.watchlist?.length > 0 ?
+                        <div className='watchlist_slider-text mb-3 w-5/6 self-center'>Pick what you want to watch next</div>
+                        :
+                        <div className='watchlist_slider-text mb-3 w-5/6 self-center'>Add movies and shows you would like to track</div>
+                    }
+                </>}
             </div>
-            <Swiper
-                className='w-5/6 mb-7'
+            {currentUser.user && <Swiper
+                className='w-5/6 mb-10'
                 spaceBetween={10}
                 slidesPerView={5}
                 navigation={true}
                 modules={[Navigation]}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper: any) => console.log(swiper)}
             >
-                {watchlist.watchlist.map((item: any) => {
+                {watchlist.watchlist?.map((item: any) => {
                     return <SwiperSlide key={item.id}>
                         <Link to={`/${item.mediaType}/${item.id}`} className='trending_show_slide rounded relative'>
                             <img className="rounded" src={item.backgroundPath} alt='trending show' />
@@ -45,7 +54,7 @@ function WatchlistSlider(){
                         </Link>
                     </SwiperSlide>
                 })}
-            </Swiper>
+            </Swiper>}
         </>
     )
 }

@@ -18,7 +18,6 @@ interface SimilarShowsSliderProps {
 function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
 
     const [similarShows, setSimilarShows] = useState<Show[]>();
-    console.log(genres && genres[0].id)
     useEffect(() => {
         const optionsShows = {
             method: 'GET',
@@ -66,13 +65,11 @@ function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
                 <div className='similar_shows_slider-text mb-3 w-5/6 self-center'>People also watched</div>
             </div>
             <Swiper
-                className='w-5/6 mb-7'
+                className='w-5/6 mb-10'
                 spaceBetween={10}
                 slidesPerView={5}
                 navigation={true}
                 modules={[Navigation]}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper: any) => console.log(swiper)}
             >
                 {similarShows?.filter((show) => {
                     return show.id !== id;

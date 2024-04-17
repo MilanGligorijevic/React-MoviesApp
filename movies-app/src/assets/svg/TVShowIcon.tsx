@@ -1,9 +1,9 @@
 export const TVShowIcon = () => {
     return (
 
-        <svg width="20px" height="20px" viewBox="0 0 16.00 16.00" xmlns="http://www.w3.org/2000/svg" fill="#333333" className="m-1 bi bi-tv" stroke="#333333" stroke-width="0.00016">
+        <svg width="20px" height="20px" viewBox="0 0 16.00 16.00" xmlns="http://www.w3.org/2000/svg" fill="#333333" className="m-1 bi bi-tv" stroke="#333333" strokeWidth="0.00016">
 
-            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+            <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
 

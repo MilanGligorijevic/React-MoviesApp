@@ -11,7 +11,7 @@ function TrendingMovies() {
     return (
         <div className='trending_movies_main'>
             <Navbar />
-            <div className='trending_movies_container flex-col ml-20 mt-10'>
+            <div className='trending_movies_container flex-col ml-20 mt-10 mb-10'>
                 <div>
                     <div className='trending_movies-title'>Trending movies</div>
                     <div className='trending_movies-text'>Most popular movies right now</div>

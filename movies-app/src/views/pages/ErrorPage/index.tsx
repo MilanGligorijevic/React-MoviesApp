@@ -7,7 +7,7 @@ function ErrorPage() {
     return (
         <div className='error_main'>
             <Navbar />
-            <div className='error_container text-center mt-48'>
+            <div className='error_container text-center mt-52'>
                 <h1>Nothing to see here!</h1>
                 <h2>-Frank Drebin, Naked Gun</h2>
             </div>

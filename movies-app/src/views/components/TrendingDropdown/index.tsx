@@ -11,7 +11,7 @@ export default function TrendingDropdown() {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded  px-1 py-1 ">
+                <Menu.Button className="inline-flex w-full xl:justify-center gap-x-1.5 rounded  px-1 py-1 sm:justify-start">
                     Trending
                     <ChevronDownIcon className=" h-5 w-5  self-center" aria-hidden="true" />
                 </Menu.Button>

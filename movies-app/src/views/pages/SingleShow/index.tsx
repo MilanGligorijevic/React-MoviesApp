@@ -79,7 +79,7 @@ function SingleMovie() {
                 </div>
                 <div className='absolute top-12 right-28'>
                     {watchlist.watchlist.some((item) => item?.id === showDetails?.id) ?
-                        <div className='single_show_button-add-to-watch-list rounded p-2.5'>ON YOUR WATCHLIST</div>
+                        <div className='single_show_button-add-to-watch-list rounded p-2.5'>&#10003; ON YOUR WATCHLIST</div>
                         :
                         <button className='single_show_button-add-to-watch-list rounded p-2.5' onClick={() => currentUser.user !== null && showDetails ? watchlist.addToWatchlistAndFirebase(showDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
                     }

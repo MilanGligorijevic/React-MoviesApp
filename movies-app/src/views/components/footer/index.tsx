@@ -7,24 +7,24 @@ import { TwitterIcon } from '../../../assets/svg/TwitterIcon'
 function Footer() {
     return (
         <div className='footer_main relative'>
-            <div className='footer_top flex justify-center items-start gap-20 p-6 h-36'>
+            <div className='footer_top xl:flex xl:justify-center xl:items-start xl:gap-20 xl:p-6 xl:h-36 sm:gap-6 sm:p-2 sm:h-12'>
                 {/* <div className='absolute left-20 top-5'>
                 <PopcornLogo height={80} width={80} color="#ffffff"/>
                 </div> */}
-                <div className='footer_about_us'>
+                <div className='footer_about_us xl:block sm:hidden'>
                     <h1>COMPANY</h1>
                     <p className='footer_item cursor-pointer'>About</p>
                     <p className='footer_item cursor-pointer'>Purpose</p>
                     <p className='footer_item cursor-pointer'>Careers</p>
                 </div>
-                <div className='footer_contact'>
+                <div className='footer_contact xl:block sm:hidden'>
                     <h1>USEFUL LINKS</h1>
                     <p className='footer_item cursor-pointer'>Support</p>
                     <p className='footer_item cursor-pointer'>Contact</p>
                 </div>
                 <div className='footer_socials'>
-                    <h1>SOCIALS</h1>
-                    <div className='flex gap-3'>
+                    <h1 className='xl:block sm:hidden'>SOCIALS</h1>
+                    <div className='flex gap-3 justify-center'>
                         <FacebookIcon />
                         <InstagramIcon />
                         <TwitterIcon />

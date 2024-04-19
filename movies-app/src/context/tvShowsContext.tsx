@@ -38,7 +38,7 @@ export function ShowsContextProvider({ children }: ShowsContextProviderProps) {
                     posterPath: `https://image.tmdb.org/t/p/original/${show.poster_path}`,
                     backgroundPath: `https://image.tmdb.org/t/p/original/${show.backdrop_path}`
                 }
-                dataShows.push(newShow);
+                return dataShows.push(newShow);
             })
             setPopularShows(dataShows);
         }

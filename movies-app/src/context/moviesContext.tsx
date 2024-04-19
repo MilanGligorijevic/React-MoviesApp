@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import Movie from "../types/movie";
 import axios from "axios";
 

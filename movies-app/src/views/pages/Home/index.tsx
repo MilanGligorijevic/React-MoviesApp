@@ -6,21 +6,24 @@ import TrendingShowsSlider from '../../components/TrendingShowsSlider'
 import HeroSection from '../../components/HeroSection'
 import WatchlistSlider from '../../components/WatchlistSlider'
 import { useMediaQuery } from '@mui/material'
-import { smallMobileScreen } from '../../../utilities/screenSizes'
+import { smallMobileScreen, tabletMobileScreen } from '../../../utilities/screenSizes'
 import NavbarMobile from '../../components/NavbarMobile'
 
 function Home() {
     //za potrebe media query
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
-      );
+    );
+    const isSmallerTablet = useMediaQuery(
+        `(max-width: ${tabletMobileScreen}px)`,
+    );
 
     return (
         <div className='home_main'>
-            {isSmallMobile ? 
-            <NavbarMobile/>
+            {isSmallMobile || isSmallerTablet ?
+                <NavbarMobile />
                 :
-            <Navbar/>    
+                <Navbar />
             }
             <HeroSection />
             <TrendingMoviesSlider />

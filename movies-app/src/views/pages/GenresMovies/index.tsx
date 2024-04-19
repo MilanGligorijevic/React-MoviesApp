@@ -6,11 +6,21 @@ import Movie from '../../../types/movie';
 import MoviePreview from '../../components/MoviePreview';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/footer';
+import { useMediaQuery } from '@mui/material';
+import { smallMobileScreen, tabletMobileScreen } from '../../../utilities/screenSizes';
+import NavbarMobile from '../../components/NavbarMobile';
 
 function GenresMovies() {
     const { genreId, genreName } = useParams();
     const [moviesByGenre, setMoviesByGenre] = useState<Array<Movie>>([]);
     const currentPage: number = 1;
+
+    const isSmallMobile = useMediaQuery(
+        `(max-width: ${smallMobileScreen}px)`,
+    );
+    const isSmallerTablet = useMediaQuery(
+        `(max-width: ${tabletMobileScreen}px)`,
+    );
 
 
     useEffect(() => {
@@ -60,10 +70,14 @@ function GenresMovies() {
 
     return (
         <div className='main_genres'>
-            <Navbar />
-            <div className='genre_container flex-col ml-20 mt-10 mb-10'>
-                <div className='genre_title'>Movies by Genre / <span className='font-semibold'>{genreName}</span></div>
-                <div className='flex flex-wrap gap-3 mt-5'>
+            {isSmallMobile || isSmallerTablet ?
+                <NavbarMobile />
+                :
+                <Navbar />
+            }
+            <div className='genre_container flex-col ml-20 mt-10 mb-10 sm:mx-5 sm:mt-5 s:ml-10'>
+                <div className='genre_title sm:text-2xl'>Movies by Genre / <span className='font-semibold'>{genreName}</span></div>
+                <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
                     {moviesByGenre.map((movie: Movie) => {
                         return <MoviePreview key={movie.id} {...movie} />
                     })}

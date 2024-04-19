@@ -1,20 +1,22 @@
-@import '../../../../index.scss';
+@import "../../../../index.scss";
 
 .mobile_navbar_main {
-    display: flex;
-    // justify-content: center;
-    align-items: center;
-    font-size: $small_text;
-    background-color: $color_yellow;
-  
-    .mobile_navbar_logo-name{
-      font-size: $small_text;
-      font-weight: 1000;
-    }
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  font-size: $small_text;
+  background-color: $color_yellow;
 
+  .mobile_navbar_logo-name {
+    font-size: $small_text;
+    font-weight: 1000;
   }
-  
-  .mobile_navbar_menu{
-      
-      background: $color_yellow;
-  }
+}
+
+.mobile_navbar_menu {
+  background: $color_yellow;
+}
+
+.mobile_button {
+  color: $color_yellow;
+}

@@ -10,6 +10,8 @@ function firebaseErrorHandler(errorMessage: string): string {
       return "Please enter your email";
     case "Firebase: Password should be at least 6 characters (auth/weak-password).":
       return "Password should be at least 6 characters";
+    case "Firebase: Error (auth/popup-closed-by-user).":
+      return "Please don't close sign up pop-up";
     default:
       return errorMessage;
   }

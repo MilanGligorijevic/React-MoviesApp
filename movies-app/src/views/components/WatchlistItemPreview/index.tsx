@@ -16,13 +16,13 @@ function WatchlistItemPreview({ item }: WatchlistItemProps) {
     const watchlist = useWatchlist()
 
     return (
-        <div className='w-52 rounded relative'>
+        <div className='w-52 rounded relative sm:w-36'>
             <button className="absolute top-1 right-1" onClick={() => watchlist.removeFromWatchlistAndFirebase(item)}><CloseIcon /></button>
             <Link to={`/${item.mediaType}/${item.id}`}>
                 <img className="rounded" src={item.posterPath} alt={`${item.mediaType} preview`} />
-                <div className=''>{item.mediaType === 'movie' ? <MovieIcon /> : <TVShowIcon />}</div>
-                <div className='watchlist_item_preview_title mt-1'>{item.title}</div>
-                <div className='watchlist_item_preview_release_date'>{item.releaseDate.slice(0, 4)}</div>
+                <div className='sm:hidden'>{item.mediaType === 'movie' ? <MovieIcon /> : <TVShowIcon />}</div>
+                <div className='watchlist_item_preview_title mt-1 sm:hidden'>{item.title}</div>
+                <div className='watchlist_item_preview_release_date sm:hidden'>{item.releaseDate.slice(0, 4)}</div>
             </Link>
         </div>
     )

@@ -4,7 +4,7 @@
   height: 48vh;
   overflow: hidden;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.733), rgb(0, 0, 0));
-  .single_movie_background {
+  .single_show_background {
     object-fit: cover;
     opacity: 0.4;
     height: 100%;
@@ -13,26 +13,13 @@
 
   .single_show_details {
     color: $color_white;
-
-    &-title {
-      font-size: $large_text;
-      font-weight: 600;
-    }
-    &-genres {
-      font-size: $small_text;
-    }
-    &-text {
-      font-size: $medium_text;
-    }
-  }
-  .single_show_poster {
   }
 
   .single_show_button-add-to-watch-list {
     background-color: $color_black;
     color: $color_yellow;
     border: 1px solid $color_yellow;
-    font-size: $small_text;
-    font-weight: 500;
+    // font-size: $small_text;
+    // font-weight: 500;
   }
 }

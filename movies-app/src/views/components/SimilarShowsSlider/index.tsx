@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Show from '../../../types/show';
 import Genre from '../../../types/genre';
+import { useMediaQuery } from '@mui/material';
+import { smallMobileScreen, smallerDesktopScreen, tabletScreen, smallerTabletScreen } from '../../../utilities/screenSizes';
 
 interface SimilarShowsSliderProps {
     id?: number,
@@ -18,6 +20,21 @@ interface SimilarShowsSliderProps {
 function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
 
     const [similarShows, setSimilarShows] = useState<Show[]>();
+
+    const isSmallMobile = useMediaQuery(
+        `(max-width: ${smallMobileScreen}px)`,
+    );
+    const isSmallerDesktop = useMediaQuery(
+        `(max-width: ${smallerDesktopScreen}px)`,
+    );
+    const isTablet = useMediaQuery(
+        `(max-width: ${tabletScreen}px)`,
+    );
+    const isSmallerTablet = useMediaQuery(
+        `(max-width: ${smallerTabletScreen}px)`,
+    );
+
+
     useEffect(() => {
         const optionsShows = {
             method: 'GET',
@@ -62,12 +79,12 @@ function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
     return (
         <>
             <div className='flex flex-col mt-8'>
-                <div className='similar_shows_slider-text mb-3 w-5/6 self-center'>People also watched</div>
+                <div className='similar_shows_slider-text mb-3 w-5/6 self-center sm:text-2xl'>People also watched</div>
             </div>
             <Swiper
                 className='w-5/6 mb-10'
                 spaceBetween={10}
-                slidesPerView={5}
+                slidesPerView={isSmallMobile ? 1 : isSmallerTablet ? 2 : isTablet ? 3 : isSmallerDesktop ? 4 : 5}
                 navigation={true}
                 modules={[Navigation]}
             >

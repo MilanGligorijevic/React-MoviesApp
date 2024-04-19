@@ -6,10 +6,19 @@ import SearchResult from '../../../types/searchResult';
 import SearchResultPreview from '../../components/SearchResultPreview';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/footer';
+import NavbarMobile from '../../components/NavbarMobile';
+import { useMediaQuery } from '@mui/material';
+import { smallMobileScreen, smallerTabletScreen } from '../../../utilities/screenSizes';
 
 function SearchResults() {
     const { searchQuery } = useParams();
     const [searchResult, setSearchResult] = useState<Array<SearchResult>>([]);
+    const isSmallMobile = useMediaQuery(
+        `(max-width: ${smallMobileScreen}px)`,
+    );
+    const isSmallerTablet = useMediaQuery(
+        `(max-width: ${smallerTabletScreen}px)`,
+    );
 
     useEffect(() => {
         const options = {
@@ -26,7 +35,6 @@ function SearchResults() {
             const { data } = await axios.request(
                 options
             );
-            console.log("HERE ", data)
             const searchResults: SearchResult[] = [];
             // fiksno vraca prvih 15 rezultata zbog prevelike kolicine podataka
             data.results.slice(0, 15).map((result: any) => {
@@ -40,7 +48,7 @@ function SearchResults() {
                     // backgroundPath: `https://image.tmdb.org/t/p/original/${result.backdrop_path}`
                     mediaType: result.media_type,
                 }
-                searchResults.push(newResult);
+                return searchResults.push(newResult);
             })
             setSearchResult(searchResults);
         }
@@ -48,14 +56,18 @@ function SearchResults() {
     }, [searchQuery])
     return (
         <div className='search_results_main'>
-            <Navbar />
-            <div className='ml-20 mt-10 mb-10 flex-col'>
+            {isSmallMobile || isSmallerTablet ?
+                <NavbarMobile />
+                :
+                <Navbar />
+            }
+            <div className='ml-20 mt-10 mb-10 flex-col sm:mx-5 sm:mt-5 s:ml-10'>
                 <div>
-                    <div className='search_results-title'>Results for <strong>"{searchQuery}"</strong></div>
+                    <div className='search_results-title sm:text-2xl'>Results for <strong>"{searchQuery}"</strong></div>
                 </div>
-                <div className='flex flex-wrap gap-3 mt-5'>
+                <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
                     {searchResult.map((result) => {
-                        return <SearchResultPreview {...result} />
+                        return <SearchResultPreview key={result.id} {...result} />
                     })}
                 </div>
             </div>

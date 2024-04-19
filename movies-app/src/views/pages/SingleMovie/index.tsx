@@ -10,6 +10,9 @@ import SimilarMoviesSlider from '../../components/SimilarMoviesSlider';
 import CastPreviewMovie from '../../components/CastPreviewMovie';
 import { useCurrentUser } from '../../../context/usersContext';
 import { useWatchlist } from '../../../context/watchlistContext';
+import NavbarMobile from '../../components/NavbarMobile';
+import { useMediaQuery } from '@mui/material';
+import { smallMobileScreen, smallerTabletScreen } from '../../../utilities/screenSizes';
 
 function SingleMovie() {
     const { movieId } = useParams();
@@ -19,6 +22,12 @@ function SingleMovie() {
     const watchlist = useWatchlist();
     const navigateToLogInPage = useNavigate();
 
+    const isSmallMobile = useMediaQuery(
+        `(max-width: ${smallMobileScreen}px)`,
+    );
+    const isSmallerTablet = useMediaQuery(
+        `(max-width: ${smallerTabletScreen}px)`,
+    );
 
 
 
@@ -58,38 +67,47 @@ function SingleMovie() {
 
     return (
         <div className='single_movie_main'>
-            <Navbar />
-            <div className='single_movie_info relative'>
+            {isSmallMobile || isSmallerTablet ?
+                <NavbarMobile />
+                :
+                <Navbar />
+            }
+            <div className='single_movie_info relative sm:overflow-auto'>
                 <img className="single_movie_background " src={movieDetails?.backgroundPath} alt="movie cover" />
-                <div className='absolute top-10 left-28 flex gap-10'>
-                    <div className='w-52 rounded'>
+                <div className='absolute top-10 left-28 flex gap-10 sm:top-7 sm:left-10 sm:gap-5'>
+                    <div className='w-52 rounded sm:w-44'>
                         <img className="rounded" src={movieDetails?.posterPath} alt="movie preview" />
                     </div>
                     <div className='single_movie_details w-9/12'>
-                        <div className='single_movie_details-title'>{movieDetails?.title}</div>
+                        <div className='single_movie_details-title text-3xl font-semibold sm:text-2xl'>{movieDetails?.title}</div>
                         <Rating
                             name="read-only"
                             precision={0.5}
                             value={rating}
                             readOnly
                         />
-                        <div className='single_movie_details-genres flex gap-3 mb-5'>
+                        <div className='single_movie_details-genres flex gap-3 mb-5 text-base sm:text-sm sm:flex-col sm:gap-0.5 s:text-sm s:flex-col s:gap-0.5'>
                             {movieDetails?.genres.map((genre) => {
                                 return <div key={genre.id}>{genre.name}</div>
                             })}
                         </div>
-                        <div className='single_movie_details-text w-9/12'>{movieDetails?.overview}</div>
+                        {!isSmallMobile && <div className='single_movie_details-text w-9/12 text-base s:text-sm'>{movieDetails?.overview}</div>}
                     </div>
+
                 </div>
-                <div className='absolute top-12 right-28'>
+                <div className='absolute top-12 right-28 sm:top-64 sm:right-36 s:bottom-10 s:top-auto s:right-auto s:left-28'>
                     {watchlist.watchlist.some((item) => item?.id === movieDetails?.id) ?
-                        <div className='single_movie_button-add-to-watch-list rounded p-2.5'>&#10003; ON YOUR WATCHLIST</div>
+                        <div className='single_movie_button-add-to-watch-list font-semibold rounded p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm'>&#10003; ON YOUR WATCHLIST</div>
                         :
-                        <button className='single_movie_button-add-to-watch-list rounded p-2.5' onClick={() => currentUser.user !== null && movieDetails ? watchlist.addToWatchlistAndFirebase(movieDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
+                        <button className='single_movie_button-add-to-watch-list font-semibold rounded p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm' onClick={() => currentUser.user !== null && movieDetails ? watchlist.addToWatchlistAndFirebase(movieDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
                     }
 
                 </div>
             </div>
+            {isSmallMobile && <div>
+                <h1 className='mt-5 mb-3 font-medium text-2xl ml-7'>Overview</h1>
+                <div className='ml-7 mr-3'>{movieDetails?.overview}</div>
+            </div>}
             <CastPreviewMovie />
             <SimilarMoviesSlider {...movieDetails} />
             <Footer />

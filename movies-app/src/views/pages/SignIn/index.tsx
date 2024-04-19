@@ -8,12 +8,23 @@ import Footer from '../../components/footer';
 import { useCurrentUser } from '../../../context/usersContext';
 import { useNavigate } from 'react-router';
 import firebaseErrorHandler from '../../../utilities/firebaseErrorHandler';
+import { useMediaQuery } from '@mui/material';
+import { smallMobileScreen, smallerTabletScreen } from '../../../utilities/screenSizes';
+import NavbarMobile from '../../components/NavbarMobile';
 
 function SignIn() {
     const [userCredentials, setUserCredentials] = useState<User>({ id: 0, email: "", password: "", firstName: '', lastName: '' });
     const [errorState, setErrorState] = useState<string>('');
     const currentUser = useCurrentUser();
     const navigateToHomePage = useNavigate();
+
+    const isSmallMobile = useMediaQuery(
+        `(max-width: ${smallMobileScreen}px)`,
+    );
+    const isSmallerTablet = useMediaQuery(
+        `(max-width: ${smallerTabletScreen}px)`,
+    );
+
 
 
     function handleCredentials(e: React.ChangeEvent<HTMLInputElement>) {
@@ -50,7 +61,11 @@ function SignIn() {
     }
     return (
         <div className='sign_in_main'>
-            <Navbar />
+            {isSmallMobile || isSmallerTablet ?
+                <NavbarMobile />
+                :
+                <Navbar />
+            }
             <div className='sign_in_wrapper flex justify-center p-10 gap-20'>
                 <div className='sign_in_container flex flex-col w-72'>
                     <h1 className='sign_in_container_title mb-4'>Sign up</h1>
@@ -65,14 +80,14 @@ function SignIn() {
                     <button className='sign_in_btn rounded p-1 mb-2' onClick={(e) => handleSignup(e)}>Sign up</button>
                     <div className='error mb-20 self-center'>{errorState}</div>
                 </div>
-                <div className='separation_line'></div>
-                <div className='benefits_container'>
+                {!isSmallerTablet && <div className='separation_line'></div>}
+                {!isSmallerTablet && <div className='benefits_container'>
                     <h1 className='benefits_title mb-5'>Benefits of your POPCORN account</h1>
                     <h2 className='benefits_item mb-3'>+ Browse TV shows and Movies</h2>
                     <h2 className='benefits_item mb-3'>+ Discover what to watch next</h2>
                     <h2 className='benefits_item mb-3'>+ Add Movies and TV shows to your Watchlist</h2>
                     <h2 className='benefits_item mb-3'>+ Keep track of everything you are watching</h2>
-                </div>
+                </div>}
             </div>
 
             <Footer />

@@ -31,8 +31,8 @@ function Navbar() {
     return (
         <GenresContextProvider>
             <GenresShowsContextProvider>
-                <nav className='main_navbar h-20 gap-10'>
-                    <Link to="/" className='navbar_logo ml-32'>
+                <nav className='main_navbar h-20 gap-10 md:text-base'>
+                    <Link to="/" className='navbar_logo ml-32 xl:ml-10'>
                         <PopcornLogo height={52} width={52} />
                         <div className='navbar_logo-name'>POP <br></br>CORN</div>
                     </Link>

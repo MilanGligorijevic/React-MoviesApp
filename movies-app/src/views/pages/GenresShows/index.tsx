@@ -6,11 +6,21 @@ import Navbar from '../../components/Navbar';
 import Show from '../../../types/show';
 import ShowPreview from '../../components/ShowPreview';
 import Footer from '../../components/footer';
+import { useMediaQuery } from '@mui/material';
+import { smallMobileScreen, tabletMobileScreen } from '../../../utilities/screenSizes';
+import NavbarMobile from '../../components/NavbarMobile';
 
 function GenresShows() {
     const { genreId, genreName } = useParams();
     const [showsByGenre, setShowsByGenre] = useState<Array<Show>>([]);
-    console.log(genreId, genreName);
+
+    const isSmallMobile = useMediaQuery(
+        `(max-width: ${smallMobileScreen}px)`,
+    );
+    const isSmallerTablet = useMediaQuery(
+        `(max-width: ${tabletMobileScreen}px)`,
+    );
+
     useEffect(() => {
         const optionsShows = {
             method: 'GET',
@@ -52,10 +62,14 @@ function GenresShows() {
 
     return (
         <div className='main_genres_shows'>
-            <Navbar />
-            <div className='genre_container flex-col ml-20 mt-10 mb-10'>
-                <div className='genre_title'>Shows by Genre / <span className='font-semibold'>{genreName}</span></div>
-                <div className='flex flex-wrap gap-3 mt-5'>
+            {isSmallMobile || isSmallerTablet ?
+                <NavbarMobile />
+                :
+                <Navbar />
+            }
+            <div className='genre_container flex-col ml-20 mt-10 mb-10 sm:mx-5 sm:mt-5 s:ml-10'>
+                <div className='genre_title sm:text-2xl'>Shows by Genre / <span className='font-semibold'>{genreName}</span></div>
+                <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
                     {showsByGenre.map((show: Show) => {
                         return <ShowPreview key={show.id} {...show} />
                     })}

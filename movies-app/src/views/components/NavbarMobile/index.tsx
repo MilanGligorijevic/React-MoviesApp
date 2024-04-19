@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './css/style.scss';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PopcornLogo } from "../../../assets/svg/PopcornLogo";
 import { GenresContextProvider } from "../../../context/genreContext";
 import { GenresShowsContextProvider } from "../../../context/genreShowsContext";
@@ -9,58 +9,59 @@ import TrendingDropdown from "../TrendingDropdown";
 import GenresDropdown from "../GenresDropdown";
 import GenresShowsDropdown from "../GenresShowsDropdown";
 import { useCurrentUser } from "../../../context/usersContext";
-import { getUsersWatchlist } from "../../../firebase/config";
+import { auth, getUsersWatchlist } from "../../../firebase/config";
 import { NavbarMobileMenu } from "../../../assets/svg/NavbarMobileMenu";
+import { signOut } from "firebase/auth";
 
-function NavbarMobile(){
+function NavbarMobile() {
     const currentUser = useCurrentUser();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
+    const navigateToHomePage = useNavigate();
 
     function toggleMenu() {
-    setMenuOpen((prevState) => !prevState);
-    console.log(menuOpen);
+        setMenuOpen((prevState) => !prevState);
     }
 
-    function handleSignOut(){
-
+    function handleSignOut() {
+        signOut(auth).then(() => {
+            currentUser.userDispatch({ type: 'SET_USER', payload: null });
+            navigateToHomePage('/');
+            setMenuOpen(false);
+        }).catch((error) => {
+            console.log("User signed out")
+        });
     }
 
-    return(
+    return (
         <GenresContextProvider>
             <GenresShowsContextProvider>
-                <nav className='mobile_navbar_main w-full h-16 flex justify-between'>
-                    <Link to="/" className='mobile_navbar_logo ml-2 flex'>
+                <nav className='mobile_navbar_main w-full h-16 flex justify-between sticky top-0 z-50'>
+                    <Link to="/" className='mobile_navbar_logo ml-2 flex' onClick={() => toggleMenu()}>
                         <PopcornLogo height={46} width={46} />
                         <div className='mobile_navbar_logo-name'>POP <br></br>CORN</div>
                     </Link>
                     <div className="mr-2 z-50" onClick={toggleMenu}>
                         <NavbarMobileMenu toggleMenu={menuOpen} />
                     </div>
-                    </nav>
-                    {menuOpen && (
-                        <div className="mobile_navbar_menu fixed top-0 z-20 h-full w-full flex flex-col gap-5 pt-16 px-7 text-2xl font-semibold">
-                            <SearchBar />
-                            <TrendingDropdown />
-                            <GenresDropdown />
-                            <GenresShowsDropdown />
-                        </div>
-                    )} 
-                    {/* <SearchBar />
-                    <TrendingDropdown />
-                    <GenresDropdown />
-                    <GenresShowsDropdown /> */}
-                    {/* {currentUser.user && <Link to="/watchlist" onClick={() => getUsersWatchlist(currentUser.user.userId)}>+Watchlist</Link>}
-                    {currentUser.user ?
-                        <div className='ml-auto mr-5'>
-                            <button onClick={() => handleSignOut()}>Sign out</button>
-                        </div>
-                        :
-                        <div className='ml-auto mr-5'>
-                            <Link to="/login">Sign in</Link>
-                        </div>
+                </nav>
+                {menuOpen && (
+                    <div className="mobile_navbar_menu fixed top-0 z-20 h-full w-full flex flex-col gap-5 pt-20 px-7 text-2xl font-semibold">
+                        <SearchBar />
+                        <TrendingDropdown toggleFunction={toggleMenu} />
+                        <GenresDropdown toggleFunction={toggleMenu} />
+                        <GenresShowsDropdown toggleFunction={toggleMenu} />
+                        {currentUser.user && <Link to="/watchlist" onClick={() => getUsersWatchlist(currentUser.user.userId)}>+Watchlist</Link>}
+                        {currentUser.user ?
+                            <button className='mobile_button mx-auto w-3/5 pl-1 mt-12 bg-black rounded-3xl p-1.5' onClick={() => handleSignOut()}>SIGN OUT</button>
+                            :
+                            <button className='mobile_button mx-auto w-3/5 pl-1 mt-12 bg-black rounded-3xl p-1.5 '>
+                                <Link to="/login">SIGN IN</Link>
+                            </button>
 
 
-                    } */}
+                        }
+                    </div>
+                )}
             </GenresShowsContextProvider>
         </GenresContextProvider>
     );

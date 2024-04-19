@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './css/style.scss';
 import 'swiper/css';
 import "swiper/css/navigation";

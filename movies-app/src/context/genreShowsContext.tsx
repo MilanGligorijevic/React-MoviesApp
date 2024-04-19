@@ -32,7 +32,7 @@ export function GenresShowsContextProvider({ children }: GenresShowsContextProvi
                     id: genre.id,
                     name: genre.name,
                 }
-                dataGenres.push(newGenre);
+                return dataGenres.push(newGenre);
             })
             setGenres(dataGenres);
         }

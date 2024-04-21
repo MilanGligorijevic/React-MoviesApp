@@ -24,55 +24,53 @@ import ErrorPage from './views/pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-    // errorElement: <ErrorPage />,
-    // children: [
-    //   {
-    //     path: "/",
-    //     element: <Home />
-    //   },
-    //   {
-    //     path: "/watchlist",
-    //     element: <Watchlist />
-    //   },
-    //   {
-    //     path: "/login",
-    //     element: <LogIn />
-    //   },
-    //   {
-    //     path: "/signin",
-    //     element: <SignIn />
-    //   },
-    //   {
-    //     path: "/genreMovies/:genreId/:genreName",
-    //     element: <GenresMovies />
-    //   },
-    //   {
-    //     path: "/genreShows/:genreId/:genreName",
-    //     element: <GenresShows />
-    //   },
-    //   {
-    //     path: "/trendingmovies",
-    //     element: <TrendingMovies />
-    //   },
-    //   {
-    //     path: "/trendingshows",
-    //     element: <TrendingShows />
-    //   },
-    //   {
-    //     path: "/movie/:movieId",
-    //     element: <SingleMovie />
-    //   },
-    //   {
-    //     path: "/show/:showId",
-    //     element: <SingleShow />
-    //   },
-    //   {
-    //     path: "/searchResults/:searchQuery",
-    //     element: <SearchResults />,
-    //   }
-    // ]
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "/watchlist",
+        element: <Watchlist />
+      },
+      {
+        path: "/login",
+        element: <LogIn />
+      },
+      {
+        path: "/signin",
+        element: <SignIn />
+      },
+      {
+        path: "/genreMovies/:genreId/:genreName",
+        element: <GenresMovies />
+      },
+      {
+        path: "/genreShows/:genreId/:genreName",
+        element: <GenresShows />
+      },
+      {
+        path: "/trendingmovies",
+        element: <TrendingMovies />
+      },
+      {
+        path: "/trendingshows",
+        element: <TrendingShows />
+      },
+      {
+        path: "/movie/:movieId",
+        element: <SingleMovie />
+      },
+      {
+        path: "/show/:showId",
+        element: <SingleShow />
+      },
+      {
+        path: "/searchResults/:searchQuery",
+        element: <SearchResults />,
+      }
+    ]
   }
 ])
 

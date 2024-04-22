@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
-import Home from './views/pages/home';
+import Home from './views/pages/Home';
 // import SignIn from './views/pages/SignIn';
 // import Watchlist from './views/pages/Watchlist';
 // import LogIn from './views/pages/LogIn';

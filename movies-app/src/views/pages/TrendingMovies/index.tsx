@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './css/style.scss'
 import { usePopularMovies } from '../../../context/moviesContext'
 import MoviePreview from '../../components/MoviePreview';
@@ -19,6 +19,8 @@ function TrendingMovies() {
         `(max-width: ${smallerTabletScreen}px)`,
     );
 
+
+
     return (
         <div className='trending_movies_main'>
             {isSmallMobile || isSmallerTablet ?
@@ -26,6 +28,7 @@ function TrendingMovies() {
                 :
                 <Navbar />
             }
+
             <div className='trending_movies_container flex-col ml-20 mt-10 mb-10 sm:mx-5 sm:mt-5 s:mx-5'>
                 <div>
                     <div className='trending_movies-title sm:text-2xl'>Trending movies</div>
@@ -37,6 +40,7 @@ function TrendingMovies() {
                     })}
                 </div>
             </div>
+
             <Footer />
         </div>
     )

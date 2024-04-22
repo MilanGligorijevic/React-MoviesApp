@@ -21,23 +21,23 @@ function NavbarMobile() {
 
     const menuVariants = {
         initial: {
-          scaleX: 0,
+            x: -500,
         },
         animate: {
-          scaleX: 1,
-          transition: {
-            duration: 0.35,
-            ease: "easeInOut",
-          },
+            x: 0,
+            transition: {
+                duration: 0.35,
+                ease: "easeInOut",
+            },
         },
         exit: {
-          scaleX: 0,
-          transition: {
-            duration: 0.2,
-            ease: "easeInOut",
-          },
+            x: -500,
+            transition: {
+                duration: 0.2,
+                ease: "easeInOut",
+            },
         },
-      };
+    };
 
     function toggleMenu() {
         setMenuOpen((prevState) => !prevState);
@@ -66,29 +66,29 @@ function NavbarMobile() {
                     </div>
                 </nav>
                 <AnimatePresence >
-                {menuOpen && (
-                    <motion.div 
-                        className="mobile_navbar_menu fixed top-0 z-20 h-full w-full flex flex-col gap-5 pt-20 px-7 text-2xl font-semibold"
-                        variants={menuVariants}
-                        style={{originX: 1}}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
+                    {menuOpen && (
+                        <motion.div
+                            className="mobile_navbar_menu fixed top-0 z-20 h-full w-full flex flex-col gap-5 pt-20 px-7 text-2xl font-semibold"
+                            variants={menuVariants}
+                            style={{ originX: 1 }}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
                         >
-                        <SearchBar />
-                        <TrendingDropdown toggleFunction={toggleMenu} />
-                        <GenresDropdown toggleFunction={toggleMenu} />
-                        <GenresShowsDropdown toggleFunction={toggleMenu} />
-                        {currentUser.user && <Link to="/watchlist" onClick={() => getUsersWatchlist(currentUser.user.userId)}>+Watchlist</Link>}
-                        {currentUser.user ?
-                            <button className='mobile_button mx-auto w-3/5 pl-1 mt-12 bg-black rounded-3xl p-1.5' onClick={() => handleSignOut()}>SIGN OUT</button>
-                            :
-                            <button className='mobile_button mx-auto w-3/5 pl-1 mt-12 bg-black rounded-3xl p-1.5 '>
-                                <Link to="/login">SIGN IN</Link>
-                            </button>
-                        }
-                    </motion.div>
-                )}
+                            <SearchBar />
+                            <TrendingDropdown toggleFunction={toggleMenu} />
+                            <GenresDropdown toggleFunction={toggleMenu} />
+                            <GenresShowsDropdown toggleFunction={toggleMenu} />
+                            {currentUser.user && <Link to="/watchlist" onClick={() => getUsersWatchlist(currentUser.user.userId)}>+Watchlist</Link>}
+                            {currentUser.user ?
+                                <button className='mobile_button mx-auto w-3/5 pl-1 mt-12 bg-black rounded-3xl p-1.5' onClick={() => handleSignOut()}>SIGN OUT</button>
+                                :
+                                <button className='mobile_button mx-auto w-3/5 pl-1 mt-12 bg-black rounded-3xl p-1.5 '>
+                                    <Link to="/login">SIGN IN</Link>
+                                </button>
+                            }
+                        </motion.div>
+                    )}
                 </AnimatePresence>
             </GenresShowsContextProvider>
         </GenresContextProvider>

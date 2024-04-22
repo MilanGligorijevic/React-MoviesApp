@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './css/style.scss'
 import { usePopularShows } from '../../../context/tvShowsContext'
 import ShowPreview from '../../components/ShowPreview'
@@ -26,6 +26,7 @@ function TrendingShows() {
                 :
                 <Navbar />
             }
+
             <div className='ml-20 mt-10 mb-10 flex-col sm:mx-5 sm:mt-5 s:mx-5'>
                 <div>
                     <div className='trending_shows-title sm:text-2xl'>Trending shows</div>
@@ -37,6 +38,8 @@ function TrendingShows() {
                     })}
                 </div>
             </div>
+
+
             <Footer />
         </div>
     )

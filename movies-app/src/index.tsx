@@ -24,8 +24,6 @@ import ErrorPage from './views/pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />
     errorElement: <ErrorPage />,
     children: [
       {

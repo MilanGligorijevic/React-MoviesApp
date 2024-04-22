@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function MoviePreview({ id, title, overview, genres, releaseDate, posterPath }: Movie) {
     return (
-        <div className='movie_preview w-52 rounded sm:w-36'>
+        <div className='movie_preview w-52 rounded sm:w-40'>
             <Link to={`/movie/${id}`}>
                 <img className="rounded" src={posterPath} alt="movie preview" />
                 <div className='movie_preview_title mt-1 sm:hidden'>{title}</div>

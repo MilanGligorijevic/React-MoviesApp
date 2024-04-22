@@ -12,7 +12,7 @@ function HeroSection() {
 
     return (
         <div className='hero_section flex-column relative overflow-hidden'>
-            <div className='pl-40 pt-16 w-6/12 sm:pl-5 sm:pt-6 sm:pr-5 sm:w-full md:w-9/12 s:w-full s:pt-6 s:pl-5'>
+            <div className='pl-40 pt-16 w-6/12 md:pt-10  sm:pl-5 sm:pt-10 sm:pr-5 sm:w-full  s:w-full s:pt-6 s:pl-5'>
                 <h1 className='hero_section-text mb-5 text-4xl sm:text-xl s:text-2xl'>Join our growing community of TV and Movie fans</h1>
                 <h2 className='hero_section-item flex items-center gap-5 mb-4 sm:text-lg s:text-lg'><SearchIcon />Browse TV shows and Movies</h2>
                 <h2 className='hero_section-item flex items-center gap-5 mb-4 sm:text-lg s:text-lg'><FindEye />Discover what to watch next</h2>

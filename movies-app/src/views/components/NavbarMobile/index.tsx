@@ -12,11 +12,32 @@ import { useCurrentUser } from "../../../context/usersContext";
 import { auth, getUsersWatchlist } from "../../../firebase/config";
 import { NavbarMobileMenu } from "../../../assets/svg/NavbarMobileMenu";
 import { signOut } from "firebase/auth";
+import { motion, AnimatePresence } from "framer-motion";
 
 function NavbarMobile() {
     const currentUser = useCurrentUser();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const navigateToHomePage = useNavigate();
+
+    const menuVariants = {
+        initial: {
+          scaleX: 0,
+        },
+        animate: {
+          scaleX: 1,
+          transition: {
+            duration: 0.35,
+            ease: "easeInOut",
+          },
+        },
+        exit: {
+          scaleX: 0,
+          transition: {
+            duration: 0.2,
+            ease: "easeInOut",
+          },
+        },
+      };
 
     function toggleMenu() {
         setMenuOpen((prevState) => !prevState);
@@ -44,8 +65,16 @@ function NavbarMobile() {
                         <NavbarMobileMenu toggleMenu={menuOpen} />
                     </div>
                 </nav>
+                <AnimatePresence >
                 {menuOpen && (
-                    <div className="mobile_navbar_menu fixed top-0 z-20 h-full w-full flex flex-col gap-5 pt-20 px-7 text-2xl font-semibold">
+                    <motion.div 
+                        className="mobile_navbar_menu fixed top-0 z-20 h-full w-full flex flex-col gap-5 pt-20 px-7 text-2xl font-semibold"
+                        variants={menuVariants}
+                        style={{originX: 1}}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        >
                         <SearchBar />
                         <TrendingDropdown toggleFunction={toggleMenu} />
                         <GenresDropdown toggleFunction={toggleMenu} />
@@ -57,11 +86,10 @@ function NavbarMobile() {
                             <button className='mobile_button mx-auto w-3/5 pl-1 mt-12 bg-black rounded-3xl p-1.5 '>
                                 <Link to="/login">SIGN IN</Link>
                             </button>
-
-
                         }
-                    </div>
+                    </motion.div>
                 )}
+                </AnimatePresence>
             </GenresShowsContextProvider>
         </GenresContextProvider>
     );

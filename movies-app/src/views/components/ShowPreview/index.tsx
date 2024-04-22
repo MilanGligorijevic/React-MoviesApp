@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function ShowPreview({ id, title, overview, genres, releaseDate, posterPath }: Show) {
     return (
-        <div className='show_preview w-52 rounded sm:w-36'>
+        <div className='show_preview w-52 rounded sm:w-40'>
             <Link to={`/show/${id}`}>
                 <img className="rounded" src={posterPath} alt="show preview" />
                 <div className='show_preview_title mt-1 sm:hidden'>{title}</div>

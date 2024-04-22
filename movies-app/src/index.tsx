@@ -5,22 +5,22 @@ import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
-import Home from './views/pages/Home';
-import SignIn from './views/pages/SignIn';
-import Watchlist from './views/pages/Watchlist';
-import LogIn from './views/pages/LogIn';
-import TrendingMovies from './views/pages/TrendingMovies';
-import { MoviesContextProvider } from './context/moviesContext';
-import TrendingShows from './views/pages/TrendingShows';
-import { ShowsContextProvider } from './context/tvShowsContext';
-import SingleMovie from './views/pages/SingleMovie';
-import SingleShow from './views/pages/SingleShow';
-import GenresMovies from './views/pages/GenresMovies';
-import GenresShows from './views/pages/GenresShows';
-import SearchResults from './views/pages/SearchResults';
-import { UsersContextProvider } from './context/usersContext';
-import { WatchlistContextProvider } from './context/watchlistContext';
-import ErrorPage from './views/pages/ErrorPage';
+import Home from './views/pages/home';
+// import SignIn from './views/pages/SignIn';
+// import Watchlist from './views/pages/Watchlist';
+// import LogIn from './views/pages/LogIn';
+// import TrendingMovies from './views/pages/TrendingMovies';
+// import { MoviesContextProvider } from './context/moviesContext';
+// import TrendingShows from './views/pages/TrendingShows';
+// import { ShowsContextProvider } from './context/tvShowsContext';
+// import SingleMovie from './views/pages/SingleMovie';
+// import SingleShow from './views/pages/SingleShow';
+// import GenresMovies from './views/pages/GenresMovies';
+// import GenresShows from './views/pages/GenresShows';
+// import SearchResults from './views/pages/SearchResults';
+// import { UsersContextProvider } from './context/usersContext';
+// import { WatchlistContextProvider } from './context/watchlistContext';
+// import ErrorPage from './views/pages/ErrorPage';
 
 const router = createBrowserRouter([
   {

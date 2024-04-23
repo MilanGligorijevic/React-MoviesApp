@@ -29,7 +29,7 @@ function Watchlist() {
                 <div>
                     {watchlist.watchlist?.length > 0 ? <div className='watchlist-title sm:text-2xl'>Your watchlist </div>
                         :
-                        <div className='watchlist-title sm:text-2xl'>Your watchlist is empty</div>}
+                        <div className='watchlist-title mb-3 sm:text-2xl'>Your watchlist is empty</div>}
                 </div>
                 {watchlist.watchlist?.length > 0 ?
                     <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>

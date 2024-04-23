@@ -67,7 +67,7 @@ function GenresShows() {
                 :
                 <Navbar />
             }
-            <div className='genre_container flex-col ml-20 mt-10 mb-10 sm:mx-5 sm:mt-5 s:ml-10'>
+            <div className='genre_container flex-col ml-20 mt-10 mb-10 sm:mx-5 sm:mt-5 s:mx-5'>
                 <div className='genre_title sm:text-2xl'>Shows by Genre / <span className='font-semibold'>{genreName}</span></div>
                 <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
                     {showsByGenre.map((show: Show) => {

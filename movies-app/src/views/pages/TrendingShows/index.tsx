@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './css/style.scss'
 import { usePopularShows } from '../../../context/tvShowsContext'
 import ShowPreview from '../../components/ShowPreview'

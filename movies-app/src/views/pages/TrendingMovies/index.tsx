@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './css/style.scss'
 import { usePopularMovies } from '../../../context/moviesContext'
 import MoviePreview from '../../components/MoviePreview';

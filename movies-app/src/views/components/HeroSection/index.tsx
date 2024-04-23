@@ -11,7 +11,7 @@ function HeroSection() {
     const currentUser = useCurrentUser();
 
     return (
-        <div className='hero_section h-96 sm:h-80 flex-column relative overflow-hidden'>
+        <div className='hero_section h-[27rem] sm:h-80 flex-column relative overflow-hidden'>
             <div className='pl-40 pt-16 w-6/12 md:pt-6  sm:pl-5 sm:pt-7 sm:pr-5 sm:w-full s:w-full s:pl-5'>
                 <h1 className='hero_section-text mb-5 text-4xl s:text-xl'>Join our growing community of TV and Movie fans</h1>
                 <h2 className='hero_section-item flex items-center gap-5 mb-4   s:text-base'><SearchIcon />Browse TV shows and Movies</h2>

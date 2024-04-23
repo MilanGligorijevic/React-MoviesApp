@@ -10,7 +10,7 @@ interface ActorPreviewProps {
 
 function ActorPreview({ id, name, character, profileImage }: ActorPreviewProps) {
     return (
-        <div className="rounded w-36">
+        <div className="rounded w-36 ">
             <img className="h-52 rounded" src={profileImage} alt="actor preview" />
             <div className="w-32 text-wrap mt-1">
                 <h2 className="actor_name">{name}</h2>

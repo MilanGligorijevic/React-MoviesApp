@@ -97,9 +97,9 @@ function SingleMovie() {
                 </div>
                 <div className='absolute top-12 right-28 sm:top-64 sm:right-36 s:bottom-10 s:top-auto s:right-auto s:left-28'>
                     {watchlist.watchlist.some((item) => item?.id === movieDetails?.id) ?
-                        <div className='single_movie_button-add-to-watch-list font-semibold rounded p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm'>&#10003; ON YOUR WATCHLIST</div>
+                        <div className='single_movie_button-add-to-watch-list font-semibold rounded shadow p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm'>&#10003; ON YOUR WATCHLIST</div>
                         :
-                        <button className='single_movie_button-add-to-watch-list font-semibold rounded p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm' onClick={() => currentUser.user !== null && movieDetails ? watchlist.addToWatchlistAndFirebase(movieDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
+                        <button className='single_movie_button-add-to-watch-list font-semibold rounded shadow p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm' onClick={() => currentUser.user !== null && movieDetails ? watchlist.addToWatchlistAndFirebase(movieDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>
                     }
 
                 </div>

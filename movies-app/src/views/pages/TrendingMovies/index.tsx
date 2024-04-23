@@ -34,7 +34,7 @@ function TrendingMovies() {
                     <div className='trending_movies-title sm:text-2xl'>Trending movies</div>
                     <div className='trending_movies-text sm:text-base'>Most popular movies right now</div>
                 </div>
-                <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
+                <div className='flex flex-wrap gap-3 mt-5'>
                     {popularMovies.map((movie: Movie) => {
                         return <MoviePreview key={movie.id} {...movie} />
                     })}

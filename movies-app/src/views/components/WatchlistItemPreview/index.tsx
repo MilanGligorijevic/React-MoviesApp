@@ -16,7 +16,7 @@ function WatchlistItemPreview({ item }: WatchlistItemProps) {
     const watchlist = useWatchlist()
 
     return (
-        <div className='w-52 rounded relative sm:w-36'>
+        <div className='w-52 rounded relative sm:w-40'>
             <button className="absolute top-1 right-1" onClick={() => watchlist.removeFromWatchlistAndFirebase(item)}><CloseIcon /></button>
             <Link to={`/${item.mediaType}/${item.id}`}>
                 <img className="rounded" src={item.posterPath} alt={`${item.mediaType} preview`} />

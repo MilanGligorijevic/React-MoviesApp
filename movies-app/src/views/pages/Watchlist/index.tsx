@@ -32,7 +32,7 @@ function Watchlist() {
                         <div className='watchlist-title mb-3 sm:text-2xl'>Your watchlist is empty</div>}
                 </div>
                 {watchlist.watchlist?.length > 0 ?
-                    <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
+                    <div className='flex flex-wrap gap-3 mt-5'>
                         {watchlist.watchlist.map((item: any) => {
                             return <WatchlistItemPreview key={item.id} item={item} />
                         })}

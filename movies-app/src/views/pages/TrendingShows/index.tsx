@@ -32,7 +32,7 @@ function TrendingShows() {
                     <div className='trending_shows-title sm:text-2xl'>Trending shows</div>
                     <div className='trending_shows-text sm:text-base'>Most popular shows right now</div>
                 </div>
-                <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
+                <div className='flex flex-wrap gap-3 mt-5'>
                     {popularShows.map((show: Show) => {
                         return <ShowPreview key={show.id} {...show} />
                     })}

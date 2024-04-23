@@ -74,7 +74,7 @@ function SingleMovie() {
             }
             <div className='single_movie_info relative sm:overflow-auto'>
                 <img className="single_movie_background " src={movieDetails?.backgroundPath} alt="movie cover" />
-                <div className='absolute top-10 left-28 flex gap-10 sm:top-7 sm:left-10 sm:gap-5'>
+                <div className='absolute top-10 left-28 flex gap-10 sm:top-7 sm:left-8 sm:gap-5'>
                     <div className='w-52 rounded sm:w-44'>
                         <img className="rounded" src={movieDetails?.posterPath} alt="movie preview" />
                     </div>
@@ -96,7 +96,7 @@ function SingleMovie() {
 
                 </div>
                 <div className='absolute top-12 right-28 sm:top-64 sm:right-36 s:bottom-10 s:top-auto s:right-auto s:left-28'>
-                    {watchlist.watchlist.some((item) => item?.id === movieDetails?.id) ?
+                    {watchlist.watchlist?.some((item) => item?.id === movieDetails?.id) ?
                         <div className='single_movie_button-add-to-watch-list font-semibold rounded shadow p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm'>&#10003; ON YOUR WATCHLIST</div>
                         :
                         <button className='single_movie_button-add-to-watch-list font-semibold rounded shadow p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm' onClick={() => currentUser.user !== null && movieDetails ? watchlist.addToWatchlistAndFirebase(movieDetails) : navigateToLogInPage('/login')}>+ ADD TO WATCHLIST</button>

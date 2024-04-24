@@ -60,7 +60,7 @@ function WatchlistSlider() {
             >
                 {watchlist.watchlist?.map((item: any) => {
                     return <SwiperSlide key={item.id}>
-                        <Link to={`/${item.mediaType}/${item.id}`} className='trending_show_slide rounded relative'>
+                        <Link to={`/${item.mediaType}/${item.id}`} className='trending_show_slide rounded'>
                             <img className="rounded" src={item.backgroundPath} alt='trending show' />
                             <div className='trending_show-info flex flex-col  justify-center absolute left-5 bottom-2'>
                                 <div className='trending_show-title'>{item.title}</div>

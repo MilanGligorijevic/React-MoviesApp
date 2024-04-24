@@ -44,7 +44,7 @@ function TrendingShowsSlider() {
             >
                 {popularShows.map((show) => {
                     return <SwiperSlide key={show.id}>
-                        <Link to={`/show/${show.id}`} className='trending_show_slide rounded relative'>
+                        <Link to={`/show/${show.id}`} className='trending_show_slide rounded'>
                             <img className="rounded" src={show.backgroundPath} alt='trending show' />
                             <div className='trending_show-info flex flex-col  justify-center absolute left-5 bottom-2'>
                                 <div className='trending_show-title'>{show.title}</div>

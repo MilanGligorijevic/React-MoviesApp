@@ -44,7 +44,7 @@ function TrendingMoviesSlider() {
             >
                 {popularMovies.map((movie) => {
                     return <SwiperSlide key={movie.id}>
-                        <Link to={`/movie/${movie.id}`} className='trending_movie_slide rounded relative'>
+                        <Link to={`/movie/${movie.id}`} className='trending_movie_slide rounded'>
                             <img className="rounded" src={movie.backgroundPath} alt='trending movie' />
                             <div className='trending_movie-info flex flex-col  justify-center absolute left-5 bottom-2'>
                                 <div className='trending_movie-title'>{movie.title}</div>

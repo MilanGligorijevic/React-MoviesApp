@@ -1,6 +1,6 @@
 # Technologies used
 
-TS, JS, HTML, SCSS, Tailwind, React, TMDb API, Framer Motion etc.
+TS, JS, HTML, SCSS, Tailwind, React, TMDb API, Firebase, Framer Motion etc.
 
 # Getting Started with Create React App
 

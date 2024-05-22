@@ -79,7 +79,7 @@ function SingleMovie() {
                         <img className="rounded" src={movieDetails?.posterPath} alt="movie preview" />
                     </div>
                     <div className='single_movie_details w-9/12'>
-                        <div className='single_movie_details-title text-3xl font-semibold sm:text-2xl'>{movieDetails?.title}</div>
+                        <div className='single_movie_details-title text-3xl font-semibold sm:text-2xl lg:w-56'>{movieDetails?.title}</div>
                         <Rating
                             name="read-only"
                             precision={0.5}
@@ -91,11 +91,11 @@ function SingleMovie() {
                                 return <div key={genre.id}>{genre.name}</div>
                             })}
                         </div>
-                        {!isSmallMobile && <div className='single_movie_details-text w-9/12 text-base s:text-sm'>{movieDetails?.overview}</div>}
+                        {!isSmallMobile && <div className='single_movie_details-text overflow-hidden h-56 w-9/12 text-base s:text-sm s:h-48'>{movieDetails?.overview}</div>}
                     </div>
 
                 </div>
-                <div className='absolute top-12 right-28 sm:top-64 sm:right-36 s:bottom-10 s:top-auto s:right-auto s:left-28'>
+                <div className='absolute top-12 right-28 sm:top-64 sm:right-36 s:bottom-10 s:top-auto s:right-auto s:left-28 '>
                     {watchlist.watchlist?.some((item) => item?.id === movieDetails?.id) ?
                         <div className='single_movie_button-add-to-watch-list font-semibold rounded shadow p-2.5 sm:p-2 sm:text-sm s:p-2 s:text-sm'>&#10003; ON YOUR WATCHLIST</div>
                         :

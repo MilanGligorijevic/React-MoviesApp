@@ -17,7 +17,7 @@ function HeroSection() {
                 <h2 className='hero_section-item flex items-center gap-5 mb-4   s:text-base'><SearchIcon />Browse TV shows and Movies</h2>
                 <h2 className='hero_section-item flex items-center gap-5 mb-4  s:text-base'><FindEye />Discover what to watch next</h2>
                 <h2 className='hero_section-item flex items-center gap-5 mb-8 sm:gap-6  s:text-base s:gap-6 '><TrackIcon />Keep track of everything you watch</h2>
-                {!currentUser.user && <Link to='/signin' className='hero_section_button rounded-3xl shadow p-2.5 sm:p-2 s:mb-5 s:p-2 s:text-base'>SIGN UP FOR FREE</Link>}
+                {!currentUser.user && <Link to='/signin' className='hero_section_button rounded-3xl shadow p-3.5 sm:p-2 s:mb-5 s:p-2 s:text-base'>SIGN UP FOR FREE</Link>}
             </div>
             <div className='ml-10 absolute right-52 top-20 block sm:hidden xl:right-16 md:hidden s:hidden'>
                 <PopcornLogo width={500} height={500} color="#ffffff" />

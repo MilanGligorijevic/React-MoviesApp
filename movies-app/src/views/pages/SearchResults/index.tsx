@@ -9,10 +9,14 @@ import Footer from '../../components/footer';
 import NavbarMobile from '../../components/NavbarMobile';
 import { useMediaQuery } from '@mui/material';
 import { smallMobileScreen, smallerTabletScreen } from '../../../utilities/screenSizes';
+import LoadingCircle from '../../components/LoadingCircle';
 
 function SearchResults() {
     const { searchQuery } = useParams();
     const [searchResult, setSearchResult] = useState<Array<SearchResult>>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
     );
@@ -51,6 +55,7 @@ function SearchResults() {
                 return searchResults.push(newResult);
             })
             setSearchResult(searchResults);
+            setIsLoading(false);
         }
         fetchData();
     }, [searchQuery])
@@ -65,11 +70,11 @@ function SearchResults() {
                 <div>
                     <div className='search_results-title sm:text-2xl'>Results for <strong>"{searchQuery}"</strong></div>
                 </div>
-                <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
+                {isLoading ? <LoadingCircle /> : <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
                     {searchResult.map((result) => {
                         return <SearchResultPreview key={result.id} {...result} />
                     })}
-                </div>
+                </div>}
             </div>
             <Footer />
         </div>

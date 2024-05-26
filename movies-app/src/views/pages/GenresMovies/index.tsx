@@ -9,11 +9,14 @@ import Footer from '../../components/footer';
 import { useMediaQuery } from '@mui/material';
 import { smallMobileScreen, tabletMobileScreen } from '../../../utilities/screenSizes';
 import NavbarMobile from '../../components/NavbarMobile';
+import LoadingCircle from '../../components/LoadingCircle';
 
 function GenresMovies() {
     const { genreId, genreName } = useParams();
     const [moviesByGenre, setMoviesByGenre] = useState<Array<Movie>>([]);
     const currentPage: number = 1;
+    const [isLoading, setIsLoading] = useState(true);
+
 
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
@@ -60,6 +63,7 @@ function GenresMovies() {
                 return dataMovies.push(newMovie);
             })
             setMoviesByGenre(dataMovies);
+            setIsLoading(false);
         }
 
         fetchMoviesData();
@@ -78,11 +82,11 @@ function GenresMovies() {
 
             <div className='genre_container flex-col ml-20 mt-10 mb-10 sm:mx-5 sm:mt-5 s:mx-5'>
                 <div className='genre_title sm:text-2xl'>Movies by Genre / <span className='font-semibold'>{genreName}</span></div>
-                <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
+                {isLoading ? <LoadingCircle /> : <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
                     {moviesByGenre.map((movie: Movie) => {
                         return <MoviePreview key={movie.id} {...movie} />
                     })}
-                </div>
+                </div>}
 
             </div>
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './css/style.scss'
 import { usePopularShows } from '../../../context/tvShowsContext'
 import ShowPreview from '../../components/ShowPreview'
@@ -8,9 +8,17 @@ import Footer from '../../components/footer'
 import { smallMobileScreen, smallerTabletScreen } from '../../../utilities/screenSizes'
 import { useMediaQuery } from '@mui/material'
 import NavbarMobile from '../../components/NavbarMobile'
+import LoadingCircle from '../../components/LoadingCircle'
 
 function TrendingShows() {
     const popularShows = usePopularShows();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (popularShows) {
+            setIsLoading(false);
+        }
+    }, [popularShows])
 
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
@@ -32,11 +40,11 @@ function TrendingShows() {
                     <div className='trending_shows-title sm:text-2xl'>Trending shows</div>
                     <div className='trending_shows-text sm:text-base'>Most popular shows right now</div>
                 </div>
-                <div className='flex flex-wrap gap-3 mt-5'>
+                {isLoading ? <LoadingCircle /> : <div className='flex flex-wrap gap-3 mt-5'>
                     {popularShows.map((show: Show) => {
                         return <ShowPreview key={show.id} {...show} />
                     })}
-                </div>
+                </div>}
             </div>
 
 

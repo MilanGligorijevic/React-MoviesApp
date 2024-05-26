@@ -9,10 +9,13 @@ import Footer from '../../components/footer';
 import { useMediaQuery } from '@mui/material';
 import { smallMobileScreen, tabletMobileScreen } from '../../../utilities/screenSizes';
 import NavbarMobile from '../../components/NavbarMobile';
+import LoadingCircle from '../../components/LoadingCircle';
 
 function GenresShows() {
     const { genreId, genreName } = useParams();
     const [showsByGenre, setShowsByGenre] = useState<Array<Show>>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
@@ -55,6 +58,7 @@ function GenresShows() {
                 return dataShows.push(newShow);
             })
             setShowsByGenre(dataShows);
+            setIsLoading(false);
         }
         fetchShowsData();
 
@@ -69,11 +73,11 @@ function GenresShows() {
             }
             <div className='genre_container flex-col ml-20 mt-10 mb-10 sm:mx-5 sm:mt-5 s:mx-5'>
                 <div className='genre_title sm:text-2xl'>Shows by Genre / <span className='font-semibold'>{genreName}</span></div>
-                <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
+                {isLoading ? <LoadingCircle /> : <div className='flex flex-wrap gap-3 mt-5 sm:gap-4'>
                     {showsByGenre.map((show: Show) => {
                         return <ShowPreview key={show.id} {...show} />
                     })}
-                </div>
+                </div>}
             </div>
             <Footer />
 

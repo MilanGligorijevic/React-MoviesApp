@@ -11,6 +11,7 @@ import Show from '../../../types/show';
 import Genre from '../../../types/genre';
 import { useMediaQuery } from '@mui/material';
 import { smallMobileScreen, smallerDesktopScreen, tabletScreen, smallerTabletScreen } from '../../../utilities/screenSizes';
+import LoadingCircle from '../LoadingCircle';
 
 interface SimilarShowsSliderProps {
     id?: number,
@@ -20,6 +21,8 @@ interface SimilarShowsSliderProps {
 function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
 
     const [similarShows, setSimilarShows] = useState<Show[]>();
+    const [isLoading, setIsLoading] = useState(true);
+
 
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
@@ -69,6 +72,7 @@ function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
                 return dataShows.push(newShow);
             })
             setSimilarShows(dataShows);
+            setIsLoading(false);
         }
 
         fetchShowsData();
@@ -81,7 +85,7 @@ function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
             <div className='flex flex-col mt-8'>
                 <div className='similar_shows_slider-text mb-3 w-5/6 self-center sm:text-2xl'>People also watched</div>
             </div>
-            <Swiper
+            {isLoading ? <LoadingCircle /> : <Swiper
                 className='w-5/6 mb-10'
                 spaceBetween={10}
                 slidesPerView={isSmallMobile ? 1 : isSmallerTablet ? 2 : isTablet ? 3 : isSmallerDesktop ? 4 : 5}
@@ -98,7 +102,7 @@ function SimilarShowsSlider({ id, genres }: SimilarShowsSliderProps) {
                         </Link>
                     </SwiperSlide>
                 })}
-            </Swiper>
+            </Swiper>}
         </>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './css/style.scss'
 import { usePopularMovies } from '../../../context/moviesContext'
 import MoviePreview from '../../components/MoviePreview';
@@ -8,9 +8,17 @@ import Footer from '../../components/footer';
 import NavbarMobile from '../../components/NavbarMobile';
 import { useMediaQuery } from '@mui/material';
 import { smallMobileScreen, smallerTabletScreen } from '../../../utilities/screenSizes';
+import LoadingCircle from '../../components/LoadingCircle';
 
 function TrendingMovies() {
     const popularMovies = usePopularMovies();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (popularMovies) {
+            setIsLoading(false);
+        }
+    }, [popularMovies])
 
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
@@ -34,11 +42,11 @@ function TrendingMovies() {
                     <div className='trending_movies-title sm:text-2xl'>Trending movies</div>
                     <div className='trending_movies-text sm:text-base'>Most popular movies right now</div>
                 </div>
-                <div className='flex flex-wrap gap-3 mt-5'>
+                {isLoading ? <LoadingCircle /> : <div className='flex flex-wrap gap-3 mt-5'>
                     {popularMovies.map((movie: Movie) => {
                         return <MoviePreview key={movie.id} {...movie} />
                     })}
-                </div>
+                </div>}
             </div>
 
             <Footer />

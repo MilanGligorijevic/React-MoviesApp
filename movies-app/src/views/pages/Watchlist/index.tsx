@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './css/style.scss'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/footer'
@@ -7,9 +7,17 @@ import WatchlistItemPreview from '../../components/WatchlistItemPreview'
 import NavbarMobile from '../../components/NavbarMobile'
 import { useMediaQuery } from '@mui/material'
 import { smallMobileScreen, smallerTabletScreen } from '../../../utilities/screenSizes'
+import LoadingCircle from '../../components/LoadingCircle'
 
 function Watchlist() {
     const watchlist = useWatchlist();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (watchlist) {
+            setIsLoading(false);
+        }
+    }, [watchlist])
 
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
@@ -32,11 +40,12 @@ function Watchlist() {
                         <div className='watchlist-title mb-3 sm:text-2xl'>Your watchlist is empty</div>}
                 </div>
                 {watchlist.watchlist?.length > 0 ?
-                    <div className='flex flex-wrap gap-3 mt-5'>
+                    <>{isLoading ? <LoadingCircle /> : <div className='flex flex-wrap gap-3 mt-5'>
                         {watchlist.watchlist.map((item: any) => {
                             return <WatchlistItemPreview key={item.id} item={item} />
                         })}
-                    </div>
+                    </div>}
+                    </>
                     :
                     <div>Add movies and shows you would like to track</div>}
             </div>

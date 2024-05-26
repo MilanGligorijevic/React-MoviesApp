@@ -13,6 +13,7 @@ function CastPreviewMovie() {
     const { movieId } = useParams();
     const [movieCast, setMovieCast] = useState<Actor[]>();
 
+
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
     );

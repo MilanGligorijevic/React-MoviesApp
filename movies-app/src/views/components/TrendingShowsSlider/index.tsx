@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/style.scss';
 import 'swiper/css';
 import "swiper/css/navigation";
@@ -9,10 +9,18 @@ import { usePopularShows } from '../../../context/tvShowsContext';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 import { smallMobileScreen, smallerDesktopScreen, smallerTabletScreen, tabletScreen } from '../../../utilities/screenSizes';
+import LoadingCircle from '../LoadingCircle';
 
 
 function TrendingShowsSlider() {
     const popularShows = usePopularShows();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (popularShows) {
+            setIsLoading(false);
+        }
+    }, [popularShows])
 
     const isSmallMobile = useMediaQuery(
         `(max-width: ${smallMobileScreen}px)`,
@@ -35,7 +43,7 @@ function TrendingShowsSlider() {
                 </div>
                 <div className='trending_shows_slider-text mb-3 w-5/6 self-center'>Most popular shows right now</div>
             </div>
-            <Swiper
+            {isLoading ? <LoadingCircle /> : <Swiper
                 className='w-5/6 mb-7'
                 spaceBetween={10}
                 slidesPerView={isSmallMobile ? 1 : isSmallerTablet ? 2 : isTablet ? 3 : isSmallerDesktop ? 4 : 5}
@@ -53,7 +61,7 @@ function TrendingShowsSlider() {
                         </Link>
                     </SwiperSlide>
                 })}
-            </Swiper>
+            </Swiper>}
         </>
     )
 }
